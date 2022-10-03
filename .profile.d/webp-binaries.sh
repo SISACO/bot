@@ -1,0 +1,6 @@
+export PATH="/app/vendor/libwebp/bin:/app/.heroku/node/bin:/app/.heroku/yarn/bin:/usr/local/bin:/usr/bin:/bin:/app/node_modules/.bin:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/vendor/libwebp/lib:"
+export LIBRARY_PATH="$LIBRARY_PATH:/app/vendor/libwebp/lib:"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:"
+export CPPPATH="$CPPPATH:/app/vendor/libwebp/include:"
+export CPATH="$CPATH:/app/vendor/libwebp/include:"
