@@ -417,12 +417,10 @@ var searchData = {
 truecallerjs.searchNumber(searchData).then(async response => {      
     await reply(response)
    
-
+var tctt = [];
 for (let i of response) {
-let tctt = [];
 tctt.push(i.name)
-
-reply(tctt)
+reply(i.name)
 
 }
 
