@@ -1094,7 +1094,6 @@ break
 case 'hidetag':{
 if (!quoted) return reply('reply to msg')
 if (!isGroup) return reply('Bish its not group')
-if (!isGroupAdmins) return reply('Bruhh Youre not admin')
 await sisaco.sendMessage(m.chat, { text : q ? q : '' ,jpegThumbnail:tu, mentions: participants.map(a => a.id)})	
 }		  
 break	
