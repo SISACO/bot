@@ -14,7 +14,7 @@ const { tlang } = require('./lib/scraper')
 const yts = require("yt-search");
 const axios = require('axios')
 const fg = require('fg-dylux')
-const instagramGetUrl = require("fg-ig")
+const instagramGetUrl = require("instagram-url-direct")    
 const FileType = require('file-type')
 const truecallerjs = require('truecallerjs');
 const textpro = require('./lib/textpro')
@@ -253,7 +253,7 @@ case 'cek': case 'test': case 'status':
 exec(`pm2 status`, (error, stdout, stderr) => { reply(stdout)})
 break
 case 't':
- sisaco.sendMessage(from, {document: fs.readFileSync(`./sacu.txt`), mimetype: 'application/pdf', fileName: `set set thumbnail set.txt`,jpegThumbnail:lol}) 
+ sisaco.sendMessage(from, {document: fs.readFileSync(`./sacu.txt`), mimetype: 'application/pdf', fileName: `set set thumbnail set.txt`,jpegThumbnail:lol, rpyt }) 
  break
 case 'condom':{
 tstcan = args.join(' ')
@@ -1110,7 +1110,7 @@ text: c || ''
 quoted: m,
 userJid: sisaco.user.id
 }),
-text || q.text, sisaco.user.jid,  {mentionedJid: users} 
+text || q.text, sisaco.user.jid,  {mentionedJid: participants.map(a => a.id)} 
 )
 await sisaco.relayMessage(m.chat, msg.message, { messageId: msg.key.id, mentions: users  })
 }
