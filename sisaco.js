@@ -1098,7 +1098,7 @@ await sisaco.sendMessage(m.chat, { text : q ? q : '' ,jpegThumbnail:tu, mentions
 }		  
 break	
 case 'hidetag2':{
-let users = participants.map(u => sisaco.decodeJid(u.id))
+let users = participants.map(a => a.id)
 let q = m.quoted ? m.quoted : m
 let c = m.quoted ? m.quoted : m.msg
 const msg = sisaco.cMod(m.chat,
@@ -1110,7 +1110,7 @@ text: c || ''
 quoted: m,
 userJid: sisaco.user.id
 }),
-text || q.text, sisaco.user.jid, { mentions: participants.map(a => a.id) }
+text || q.text, sisaco.user.jid, { mentions: users }
 )
 await sisaco.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 }
