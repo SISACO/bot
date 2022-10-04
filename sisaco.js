@@ -1110,7 +1110,7 @@ text: c || ''
 quoted: m,
 userJid: sisaco.user.id
 }),
-text || q.text, sisaco.user.jid, { mentions: users }
+text || q.text, sisaco.user.jid,  mentions: users 
 )
 await sisaco.relayMessage(m.chat, msg.message, { messageId: msg.key.id, mentions: users  })
 }
