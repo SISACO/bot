@@ -162,7 +162,7 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu},{ quoted: m})}	                 
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu},{ quoted: m},rpyp)}	                 
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
