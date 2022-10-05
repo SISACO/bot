@@ -156,7 +156,7 @@ const reply = (teks) => {
           sisaco.sendMessage(m.chat,
            {
            text: teks,
-           jpegThumbnail:thumb,
+           jpegThumbnail:tu,
            contextInfo:
            {
            "externalAdReply": 
