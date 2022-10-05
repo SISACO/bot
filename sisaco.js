@@ -19,6 +19,7 @@ const FileType = require('file-type')
 const truecallerjs = require('truecallerjs');
 const textpro = require('./lib/textpro')
 const maker = require('mumaker')
+const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const util = require('util')
 autobug = true
