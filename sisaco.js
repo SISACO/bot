@@ -152,8 +152,8 @@ global.mess = {
        }
 
 
-const reply = (teks) => {
-           sisaco.sendMessage(m.chat,
+const reply = async(teks) => {
+          await sisaco.sendMessage(m.chat,
            {
            text: teks,
            jpegThumbnail:thumb,
@@ -297,7 +297,7 @@ break
  case 'to64' : {
 sisco = Buffer.from(m.quoted.jpegThumbnail).toString('base64');
 lsduser = `"${sisco}"`
-reply(lsduser)
+m.reply(lsduser)
 }
 break
 case 'play': {
