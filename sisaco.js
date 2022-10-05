@@ -691,13 +691,13 @@ break
 if (/image/.test(mime)) {
 let media = await quoted.download()
 reply('wait')
-let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m, rpl, { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else if (/video/.test(mime)) {
 if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
 reply('wait')
 let media = await quoted.download()
-let encmedia = await sisaco.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendVideoAsSticker(m.chat, media, m, rpl, { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else {
 reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`)
