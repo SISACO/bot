@@ -80,7 +80,7 @@ const isGroupAdmins = groupAdmins.includes(sender) || false
 const isSaya = botNumber.includes(senderNumber)
 const isDev = nomorDeveloper.includes(senderNumber) || isSaya
 const isOwner = nomorOwner.includes(senderNumber) || isSaya
-const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
+//const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
 thumb = fs.readFileSync('./nerdy.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
@@ -152,7 +152,27 @@ global.mess = {
        }
 
 
-	                 
+const reply = (teks) => {
+           sisaco.sendMessage(m.chat,
+           {
+           text: teks,
+           jpegThumbnail:thumb,
+           contextInfo:
+           {
+           "externalAdReply": 
+           {
+           "title": ` ${global.botname}`,
+           "body": `${global.botname}`,
+           "previewType": "PHOTO",
+           "thumbnailUrl": ``,
+           "thumbnail": fs.readFileSync(`./nerdy.jpg`),
+           "sourceUrl": `${global.fgsc}`
+           }
+           }
+           },
+           { quoted: m}
+           )
+           }	                 
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
