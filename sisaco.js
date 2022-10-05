@@ -524,8 +524,8 @@ case 'ttp': {
 case 'ig': {       
    let siscoo = args[0]
    const results = (await instagramGetUrl(args[0])).url_list[0]
-  for (let results of res.url_list) {        
-    conn.sendFile(m.chat, results, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
+  for (let result of results.url_list) {        
+    conn.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
      
 }
@@ -549,7 +549,7 @@ const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
   sequenceNumber: 774236889,
   timeOffset: 8600,
   jpegThumbnail: global.ttt,
-  contextInfo: { mentionedJid: [m.sender] }
+//  contextInfo: { mentionedJid: [m.sender] }
 }}, { quoted: m})
 return sisaco.relayMessage(m.chat, pre.message, { messageId: pre.key.id })
 } 
@@ -796,7 +796,7 @@ break
                 
             case 'tagall': {     
 if (!isGroup) return reply('Bruhhh isnt a group')
-if (!isGroupAdmins) return reply('You must be an admin to use this command')       	
+//if (!isGroupAdmins) return reply('You must be an admin to use this command')       	
 let teks = `╚»˙·٠•●💜 Tag All 💜●•٠·˙«╝ 
  
  ➲ *Message : ${q ? q : 'no message'}*\n\n`
