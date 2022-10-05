@@ -107,7 +107,7 @@ const replay = (teks) => {
 		let urls = getRandom(['https://tinyurl.com/248tem3e', 'https://tinyurl.com/2ygkf7cn', 'https://tinyurl.com/29rt6ynv', 'https://tinyurl.com/25ampr4y', 'https://tinyurl.com/2yq9srmd', 'https://tinyurl.com/2bahkesq', 'https://tinyurl.com/2xnzw74a', 'https://tinyurl.com/2b9hocps', 'https://tinyurl.com/265ekuvk', 
 'https://tinyurl.com/2c82ajhq', 'https://tinyurl.com/265y8p3e'])
 		// externalAdReply or text with thumbnail. idk english? try translating!
-		adReply = {
+		const adReply = {
 			contextInfo: {
 				forwardingScore: 999,
 				isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
@@ -162,16 +162,7 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => {
-          sisaco.sendMessage(m.chat,
-           {
-           text: teks,
-           jpegThumbnail:`${global.ttt}`,
-           adReply
-           }
-           { quoted: m}
-           )
-           }	                 
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu},{ quoted: m})}	                 
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
