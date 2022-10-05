@@ -1,4 +1,4 @@
-{
+  ,,,{
   "name": "semar-bmd",
   "version": "1.0.0",
   "description": "semar bot multi device",
@@ -32,7 +32,7 @@
     "truecallerjs": "^1.1.1",
     "crypto": "^1.0.1",
     "fg-ig": "^0.0.2",
-    "instagram-url-direct": "^1.0.12",
+    "instagram-url-direct": "1.0.12",
     "file-type": "^16.5.3",
     "mumaker": "^1.0.0",
     "fluent-ffmpeg": "^2.1.2",
