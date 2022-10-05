@@ -114,6 +114,30 @@ global.mess = {
     nsfw: 'The nsfw feature has not been activated, please contact the admin to activate',
     banChat: 'The bot was banned in this group, please contact the owner to unban'
 }
+
+
+// pesan sementara
+		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
+		let urls = getRandom(['https://tinyurl.com/248tem3e', 'https://tinyurl.com/2ygkf7cn', 'https://tinyurl.com/29rt6ynv', 'https://tinyurl.com/25ampr4y', 'https://tinyurl.com/2yq9srmd', 'https://tinyurl.com/2bahkesq', 'https://tinyurl.com/2xnzw74a', 'https://tinyurl.com/2b9hocps', 'https://tinyurl.com/265ekuvk', 
+'https://tinyurl.com/2c82ajhq', 'https://tinyurl.com/265y8p3e'])
+		// externalAdReply or text with thumbnail. idk english? try translating!
+		global.adReply = {
+			contextInfo: {
+				forwardingScore: 999,
+				isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
+				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
+                    showAdAttribution: true,
+					title: " 「 Sɪᴍᴩʟᴇ Wʜᴀᴛꜱᴀᴩᴩ Bᴏᴛ 」",
+					body: '\t',
+					mediaUrl: 'https://tinyurl.com/29rt6ynv',
+					description: '',
+					previewType: 1,
+					thumbnail: await(await fetch(urls)).buffer(),
+					sourceUrl: "https://github.com/Rlxfly",					
+				}
+			}
+		}
+
     if (AUTO_PP) {
       console.log("changing Profile Pic is enabled.")
       setInterval(() => {
@@ -540,6 +564,22 @@ for (let result of res.url_list) {
   } 
 }
 break
+case 'menu' : {
+const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
+  degreesLatitude: 35.685506276233525,
+  degreesLongitude: 139.75270667105852,
+  accuracyInMeters: 100,
+  speedInMps: 999,
+  degreesClockwiseFromMagneticNorth: 99,
+  caption: `text`.trim(),
+  sequenceNumber: 774236889,
+  timeOffset: 8600,
+  jpegThumbnail: global.ttt,
+  contextInfo: { mentionedJid: [m.sender] }
+}}, { quoted: m})
+return sisaco.relayMessage(m.chat, pre.message, { messageId: pre.key.id })
+} 
+break  
 //©from: dennis
 case 'groupsetting':
 if (!isGroup) return reply('Fitur Ini Hanya Dapat Digunakan Di Dalam Group!')
