@@ -182,7 +182,7 @@ const reply = (teks) => {
            {
            text: teks,
            jpegThumbnail:`${global.ttt}`,
-           `${global.adReply}`
+           global.adReply
            }
            { quoted: m}
            )
