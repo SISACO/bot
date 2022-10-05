@@ -165,12 +165,12 @@ const reply = async(teks) => {
            "body": `${global.botname}`,
            "previewType": "PHOTO",
            "thumbnailUrl": ``,
-           "thumbnail": fs.readFileSync(`./nerdy.jpg`),
+           "thumbnail": fs.readFileSync(`./ProfilePic.jpg`),
            "sourceUrl": `${global.fgsc}`
            }
            }
-           },
-           { quoted: m}
+           }
+          // { quoted: m}
            )
            }	                 
 
