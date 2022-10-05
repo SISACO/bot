@@ -305,7 +305,7 @@ envíame por t.me/fgsupp_bot el *audio + comando* con en el que responderá
 └──────────────
 `
 //const pp = await (await fetch('https://i.ibb.co/qMG1JPY/fg.jpg')).buffer()
-    let pp = './src/fg_logo.jpg' 
+    let pp = './nerdy.jpg' 
     conn.sendButton(m.chat, m2, '▢ DyLux  ┃ ᴮᴼᵀ\n▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98._\n', pp, [
       ['⏍ Info', `${prefix}botinfo`],
       ['⌬ Grupos', `${prefix}gpdylux`]
