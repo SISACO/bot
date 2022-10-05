@@ -152,8 +152,8 @@ global.mess = {
        }
 
 
-const reply = async(teks) => {
-          await sisaco.sendMessage(m.chat,
+const reply = (teks) => {
+          sisaco.sendMessage(m.chat,
            {
            text: teks,
            jpegThumbnail:thumb,
