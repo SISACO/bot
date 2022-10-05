@@ -437,8 +437,8 @@ truecallerjs.searchNumber(searchData).then(async response => {
    
 var tctt = [];
 for (let i of response) {
-tctt.push(i.name)
-reply(i.name)
+tctt.push(i.data)
+reply(data.name)
 
 }
 
@@ -522,10 +522,10 @@ case 'ttp': {
                      break
 
 case 'ig': {       
-   let siscoo = args[0]
-   const results = (await instagramGetUrl(args[0])).url_list[0]
-  for (let result of results.url_list) {        
-    conn.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
+   let siscoo = getBuffer(args[0])
+   const res = await instagramGetUrl(siscoo)
+  for (let result of res) {        
+    sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
      
 }
@@ -551,7 +551,7 @@ const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
   jpegThumbnail: global.ttt,
 //  contextInfo: { mentionedJid: [m.sender] }
 }}, { quoted: m})
-return sisaco.relayMessage(m.chat, pre.message, { messageId: pre.key.id })
+return sisaco.relayMessage(m.chat, pre.message)
 } 
 break  
 //©from: dennis
