@@ -290,6 +290,29 @@ lsduser = `"${sisco}"`
 m.reply(lsduser)
 }
 break
+case 'tem' : {
+let m2 = `
+≡ _Use estos comandos sin el prefijo_
+
+▢ Si tienes más  audios   
+envíame por t.me/fgsupp_bot el *audio + comando* con en el que responderá
+
+┌─⊷ *AUDIOS* 
+▢ Bot
+▢ Buenos días
+▢ Buenas tardes 
+▢ Buenas noches
+└──────────────
+`
+//const pp = await (await fetch('https://i.ibb.co/qMG1JPY/fg.jpg')).buffer()
+    let pp = './src/fg_logo.jpg' 
+    conn.sendButton(m.chat, m2, '▢ DyLux  ┃ ᴮᴼᵀ\n▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98._\n', pp, [
+      ['⏍ Info', `${prefix}botinfo`],
+      ['⌬ Grupos', `${prefix}gpdylux`]
+    ],m, rpyt)
+   
+}
+break
 case 'play': {
   if (!text) return reply(`✳️ *Type correctly*\n\n📌 Example *${prefix + command}* Lil Peep hate my life `)
   let vid = (await youtubeSearch(text)).video[0]
@@ -691,13 +714,13 @@ break
 if (/image/.test(mime)) {
 let media = await quoted.download()
 reply('wait')
-let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m, rpl, { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m,  { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else if (/video/.test(mime)) {
 if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
 reply('wait')
 let media = await quoted.download()
-let encmedia = await sisaco.sendVideoAsSticker(m.chat, media, m, rpl, { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else {
 reply(`Send Image/Video With Caption ${prefix + command}\nVideo Duration 1-9 Seconds`)
