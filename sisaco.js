@@ -525,10 +525,10 @@ case 'ttp': {
 
 case 'ig': {       
    let siscoo = args[0]
-   let res = await instagramGetUrl(`"${siscoo}"`)
-    for (let result of res.url_list) {        
-    sisaco.sendMedia(m.chat, result, 'igdl.mp4', `✅ Result`, m) 
-  } 
+   const results = (await instagramGetUrl(args[0])).url_list[0]
+//    for (let results of res.url_list) {        
+    conn.sendFile(m.chat, results, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
+//  } 
      
 }
 break
