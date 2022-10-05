@@ -47,7 +47,6 @@ global.db.data = {
 if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
   }, 30 * 1000)
-
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 
 sisaco.ev.on('messages.upsert', async sisacoo => {
