@@ -41,6 +41,7 @@
     "google-tts-api": "^2.0.2",
     "got": "^11.8.3",
     "human-readable": "^0.2.1",
+    "instagram-url-direct": "^1.0.12",
     "hxz-api": "^1.0.1",
     "jimp": "^0.16.1",
     "jsdom": "^16.4.0",
