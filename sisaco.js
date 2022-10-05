@@ -81,7 +81,7 @@ const isSaya = botNumber.includes(senderNumber)
 const isDev = nomorDeveloper.includes(senderNumber) || isSaya
 const isOwner = nomorOwner.includes(senderNumber) || isSaya
 //const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
-thumb = fs.readFileSync('./nerdy.jpg')
+thumb = fs.readFileSync('./thumb.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
 const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, ms))}
@@ -165,7 +165,7 @@ const reply = async(teks) => {
            "body": `${global.botname}`,
            "previewType": "PHOTO",
            "thumbnailUrl": ``,
-           "thumbnail": fs.readFileSync(`./ProfilePic.jpg`),
+           "thumbnail": fs.readFileSync(`./thumb.jpg`),
            "sourceUrl": `${global.fgsc}`
            }
            }
