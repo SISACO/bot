@@ -182,22 +182,9 @@ const reply = (teks) => {
            {
            text: teks,
            jpegThumbnail:`${global.ttt}`,
-           	contextInfo: {
-				forwardingScore: 999,
-				isForwarded: true, // ini biar ada tulisannya diteruskan berkali-kali, jika ingin di hilangkan ganti true menjadi false
-				externalAdReply: { // Bagian ini sesuka kalian berkreasi :'v
-                    showAdAttribution: true,
-					title: " 「 Sɪᴍᴩʟᴇ Wʜᴀᴛꜱᴀᴩᴩ Bᴏᴛ 」",
-					body: '\t',
-					mediaUrl: 'https://tinyurl.com/29rt6ynv',
-					description: '',
-					previewType: 1,
-					thumbnail: await(await fetch(urls)).buffer(),
-					sourceUrl: "https://github.com/Rlxfly",					
-				}
-			}
+           `${global.adReply}`
            }
-          // { quoted: m}
+           { quoted: m}
            )
            }	                 
 
