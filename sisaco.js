@@ -103,7 +103,7 @@ const replay = (teks) => {
 
 
 // pesan sementara
-		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
+/*		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
 		let urls = getRandom(['https://tinyurl.com/248tem3e', 'https://tinyurl.com/2ygkf7cn', 'https://tinyurl.com/29rt6ynv', 'https://tinyurl.com/25ampr4y', 'https://tinyurl.com/2yq9srmd', 'https://tinyurl.com/2bahkesq', 'https://tinyurl.com/2xnzw74a', 'https://tinyurl.com/2b9hocps', 'https://tinyurl.com/265ekuvk', 
 'https://tinyurl.com/2c82ajhq', 'https://tinyurl.com/265y8p3e'])
 		// externalAdReply or text with thumbnail. idk english? try translating!
@@ -118,11 +118,11 @@ const replay = (teks) => {
 					mediaUrl: 'https://tinyurl.com/29rt6ynv',
 					description: '',
 					previewType: 1,
-					thumbnail: await(await fetch(urls)).buffer(),
+					thumbnail: await(await axios(urls)).buffer(),
 					sourceUrl: "https://github.com/Rlxfly",					
 				}
 			}
-		}
+		}*/
 
     if (AUTO_PP) {
       console.log("changing Profile Pic is enabled.")
