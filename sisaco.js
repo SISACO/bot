@@ -98,7 +98,7 @@ const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, 
 	//reply link yt
     global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${global.ttt}`, sourceUrl: fgyt }}}
 const replay = (teks) => {
-              sisaco.sendMessage(m.chat, { text: teks, rpyt}, {quoted: m})}
+              sisaco.sendMessage(m.chat, { text: teks,  contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${global.ttt}`, sourceUrl: fgyt }}}, {quoted: m})}
 		
 
 
@@ -162,7 +162,7 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu},{ quoted: m},rpyp)}	                 
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu,rpyp},{ quoted: m})}	                 
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
@@ -456,8 +456,7 @@ var searchData = {
 }
 
 truecallerjs.searchNumber(searchData).then(async response => {      
-    await reply(response)
-   
+   // await reply(response)
 var tctt = [];
 for (let i of response) {
 tctt.push(i.data)
@@ -714,7 +713,7 @@ break
 if (/image/.test(mime)) {
 let media = await quoted.download()
 reply('wait')
-let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m,  { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendImageAsSticker(m.chat, media,rpl, m,  { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else if (/video/.test(mime)) {
 if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
@@ -744,23 +743,10 @@ break
           return;
         }
         if (!q) return reply("Username?");
-        hx.igstory(q)
+        const result = await instagramGetUrl(q)       
           .then(async (result) => {
-            for (let i of result.medias) {
-              if (i.url.includes("mp4")) {
-                let link = await getBuffer(i.url);
-                sisaco.sendMessage(from, link, video, {
-                  quoted: mek,
-                  caption: `Type : ${i.type}`,
-                });
-              }
-              else {
-                let link = await getBuffer(i.url);
-                sisaco.sendMessage(from, link, image, {
-                  quoted: mek,
-                  caption: `Type : ${i.type}`,
-                });
-              }
+            for (let i of result) {
+              sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, rpl,m)
             }
           });
         break;
