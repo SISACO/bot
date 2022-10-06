@@ -90,7 +90,7 @@ const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, 
 		const ppuser = await getBuffer(pporang)
 	
 	//reply link wa
-    global.rpl = { contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: packname, body: 'grupo de soporte', thumbnailUrl: `${global.ttt}`, sourceUrl: dygp }}} 
+    global.rpl = { contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${global.ttt}`, sourceUrl: dygp }}} 
 	
 	//reply link PayPal
     global.rpyp = { contextInfo: { externalAdReply: { mediaUrl: fgpyp, mediaType: 'VIDEO', description: 'Donate', title: 'PayPal', body: 'ayuda a mantener el bot activo', thumbnailUrl: `${global.ttt}`, sourceUrl: fgpyp }}}
@@ -162,7 +162,18 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu,rpyp},{ quoted: m})}	                 
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
+              externalAdReply: {
+                title: `{LangG.title}`,
+                body: `{LangG.title}`,
+                thumbnail: thumb,
+                mediaType: 2,
+                mediaUrl: `https://ZeroTwoMd.tech`,
+                sourceUrl: `https://ZeroTwoMd.tech`
+              }
+            }
+          }, { quoted: mek })}	          
+ 
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
@@ -544,8 +555,8 @@ case 'ttp': {
                      break
 
 case 'ig': {       
-   let siscoo = getBuffer(args[0])
-   const res = await instagramGetUrl(siscoo)
+   
+   const res = await instagramGetUrl(args[0])
   for (let result of res) {        
     sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
@@ -555,7 +566,7 @@ break
 case 'igs':{
 let res = await fetchJson(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
 for (let result of res.url_list) {
-    sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Result`, m)
+     sisaco.sendMedia(m.chat, result, 'hisoa', 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
     
   } 
 }
