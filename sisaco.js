@@ -1,6 +1,6 @@
 require('./settings')
 const { baileys, proto, generateWAMessageFromContent, getContentType } = require('@adiwajshing/baileys')
-const { smsg, getGroupAdmins, getBuffer, formatp, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
 const { exec } = require('child_process')
 const speed = require('performance-now')
 const request= require('request')
@@ -566,7 +566,7 @@ break
 case 'igs':{
 let res = await fetchJson(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
 for (let result of res.url_list) {
-     sisaco.sendMedia(m.chat, result, 'hisoa.mp4', 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
+     sisaco.sendMedia(m.chat, result, text, 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
     
   } 
 }
