@@ -467,7 +467,7 @@ var searchData = {
 }
 
 truecallerjs.searchNumber(searchData).then(async response => {      
-   // await reply(response)
+    await reply(response)
 var tctt = [];
 for (let i of response) {
 tctt.push(i.data)
@@ -533,14 +533,14 @@ break
         }
       }
       break;
-       case 'attp2': {
+       case 'attp': {
 		
            if (!text) return reply(`Example : ${prefix + command} text`)
            await sisaco.sendMedia(m.chat, `https://xteam.xyz/${command}?file&text=${text}`, 'hisoka', 'morou', m, {asSticker: true})
 
          }
          break
-case 'attp': {
+case 'attp2': {
 
            if (!text) reply(`Use ${prefix}attp hello\n*Example : ${prefix + command} ${ownername}*` )
            await sisaco.sendMedia(m.chat, `https://cililitan.herokuapp.com/api/attp?teks=${text}`, 'Xeon', 'Op', m, {asSticker: true}).catch((err) => reply(mess.error))
@@ -564,8 +564,8 @@ case 'ig': {
 }
 break
 case 'igs':{
-let res = await fetchJson(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
-for (let result of res.url_list) {
+let res = await axios.get(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
+for (let result of res.data.url_list) {
      sisaco.sendMedia(m.chat, result, text, 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
     
   } 
