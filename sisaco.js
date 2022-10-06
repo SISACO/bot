@@ -743,7 +743,7 @@ break
           return;
         }
         if (!q) return reply("Username?");
-        const result = await instagramGetUrl(q)       
+        let result = await instagramGetUrl(q)       
           .then(async (result) => {
             for (let i of result) {
               sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, rpl,m)
@@ -1086,7 +1086,7 @@ break
 //©from: dennis
 case 'join':
 if (!isOwner && !mek.key.fromMe) return reply('Fitur Ini Hanya Dapat Digunakan Oleh Developer!')
-let result = args[0].split('https://chat.whatsapp.com/')[1]
+let resultt = args[0].split('https://chat.whatsapp.com/')[1]
 await sisaco.groupAcceptInvite(result)
 break
 
