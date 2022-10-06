@@ -559,7 +559,7 @@ case 'ig': {
 let res =  await instagramGetUrl(args[0])
   for (let url_list of Object.keys(res)) {     
   let results = res[url_list];
-    reply(results)
+    m.reply(results)
  //   sisaco.sendFile(m.chat, results, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
   
