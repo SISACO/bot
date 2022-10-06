@@ -555,12 +555,13 @@ case 'ttp': {
                      break
 
 case 'ig': {       
-   
-   const res = await instagramGetUrl(args[0])
-  for (let result of res) {        
-    sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
+  var tcttt = [];
+  await instagramGetUrl(args[0]).then(async response => { 
+  for (let url_list of response) {     
+    tcttt.push(url_list)   
+    sisaco.sendFile(m.chat, tcttt, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
-     
+}     
 }
 break
 case 'igs':{
