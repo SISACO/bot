@@ -561,7 +561,7 @@ case 'ig': {
     tcttt.push(url_list)   
     sisaco.sendFile(m.chat, tcttt, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
-}     
+}   )  
 }
 break
 case 'igs':{
