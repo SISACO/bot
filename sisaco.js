@@ -565,7 +565,8 @@ case 'ig': {
 break
 case 'igs':{
 let res = await axios.get(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
-for (let result of res.data.url_list) {
+let anu = res.data
+for (let result of anu.url_list) {
      sisaco.sendMedia(m.chat, result, text, 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
     
   } 
