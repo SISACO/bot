@@ -267,7 +267,7 @@ return reply(require('util').format(e))}}
 
 if (isCmd) {
 await sisaco.sendPresenceUpdate('composing', m.chat)
-sisaco.sendReadReceipt(from, m.sender, [m.key.id])}
+//sisaco.sendReadReceipt(from, m.sender, [m.key.id])}
 switch (command) {
 //©from: dennis    
 case 'cek': case 'test': case 'status':
