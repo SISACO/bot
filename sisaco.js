@@ -557,7 +557,7 @@ case 'ttp': {
 case 'ig': {       
   
 let res =  await instagramGetUrl(args[0])
-  for (let results of Object.keys(res)) {     
+  for (let results of res) {     
     sisaco.sendFile(m.chat, results, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
  } 
   
