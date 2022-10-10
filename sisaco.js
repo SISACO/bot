@@ -82,7 +82,7 @@ const isSaya = botNumber.includes(senderNumber)
 const isDev = nomorDeveloper.includes(senderNumber) || isSaya
 const isOwner = nomorOwner.includes(senderNumber) || isSaya
 //const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
-thumb = fs.readFileSync('./thumb.jpg')
+thumb = fs.readFileSync('./nerdy.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
 const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, ms))}
@@ -162,19 +162,19 @@ const replay = (teks) => {
        }
 
 
-const retply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
               externalAdReply: {
-                title: `{LangG.title}`,
-                body: `{LangG.title}`,
+                title: `𝑵𝑬𝑹𝑫𝒀`,
+                body: `🧸`,
                 thumbnail: thumb,
                 mediaType: 2,
-                mediaUrl: `https://ZeroTwoMd.tech`,
-                sourceUrl: `https://ZeroTwoMd.tech`
+                mediaUrl: `https://sisaco.web.app`,
+                sourceUrl: `https://sisaco.web.app`
               }
             }
           }, { quoted: mek })}	  
          
- const reply = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
+ const reptly = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
  
 
 //©from: ivan
