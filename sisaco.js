@@ -560,6 +560,7 @@ case 'ig': {
     sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
     
   }
+  }
 break
 case 'igs':{
 let res = await axios.get(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
