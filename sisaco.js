@@ -90,13 +90,13 @@ const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, 
 		const ppuser = await getBuffer(pporang)
 	
 	//reply link wa
-    global.rpl = { contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${global.ttt}`, sourceUrl: dygp }}} 
+    global.rpl = { contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}} 
 	
 	//reply link PayPal
-    global.rpyp = { contextInfo: { externalAdReply: { mediaUrl: fgpyp, mediaType: 'VIDEO', description: 'Donate', title: 'PayPal', body: 'ayuda a mantener el bot activo', thumbnailUrl: `${global.ttt}`, sourceUrl: fgpyp }}}
+    global.rpyp = { contextInfo: { externalAdReply: { mediaUrl: fgpyp, mediaType: 'VIDEO', description: 'Donate', title: 'PayPal', body: 'ayuda a mantener el bot activo', thumbnailUrl: `${pporang}`, sourceUrl: fgpyp }}}
 	
 	//reply link yt
-    global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${global.ttt}`, sourceUrl: fgyt }}}
+    global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${pporang}`, sourceUrl: fgyt }}}
 const replay = (teks) => {
               sisaco.sendMessage(m.chat, { text: teks,  contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${global.ttt}`, sourceUrl: fgyt }}}, {quoted: m})}
 		
@@ -162,7 +162,7 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
+const retply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
               externalAdReply: {
                 title: `{LangG.title}`,
                 body: `{LangG.title}`,
@@ -172,7 +172,9 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
                 sourceUrl: `https://ZeroTwoMd.tech`
               }
             }
-          }, { quoted: mek })}	          
+          }, { quoted: mek })}	  
+         
+ const reply = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
  
 
 //©from: ivan
