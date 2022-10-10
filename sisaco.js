@@ -555,13 +555,11 @@ case 'ttp': {
                      break
 
 case 'ig': {       
-  
-let res =  await instagramGetUrl(args[0])
-  for (let results of res) {     
-    sisaco.sendFile(m.chat, results, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, m)
- } 
-  
-}
+  let res = await instagramGetUrl(args[0])
+    for (let result of res.url_list) {
+    sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
+    
+  }
 break
 case 'igs':{
 let res = await axios.get(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
