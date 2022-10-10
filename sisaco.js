@@ -162,7 +162,7 @@ const replay = (teks) => {
        }
 
 
-const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, contextInfo: {
+const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu, contextInfo: {
               externalAdReply: {
                 title: `𝑵𝑬𝑹𝑫𝒀`,
                 body: `🧸`,
