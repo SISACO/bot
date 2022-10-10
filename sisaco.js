@@ -1037,26 +1037,14 @@ await sisaco.groupLeave(from)
 break
 case 'adlt': 
 if (!isGroup) return reply('Bruhhh isnt a group')
-if (!isGroupAdmins) return reply('You must be an admin to use this command')
-if (!isBotGroupAdmins) return reply('Bot must be admin')
-let key = {
-  remoteJid: m.chat,
- fromMe: false,   
- id: m.quoted.id,
-    participant: m.quoted.sender
-}
-
-//await sisaco.sendMessage(m.chat, { delete: key })
-
-try {
-key.remoteJid = m.quoted ? m.quoted.fakeObj.key.remoteJid : m.key.remoteJid
-key.fromMe = m.quoted ? m.quoted.fakeObj.key.fromMe : m.key.fromMe
-key.id = m.quoted ? m.quoted.fakeObj.key.id : m.key.id
-key.participant = m.quoted ? m.quoted.fakeObj.participant : m.key.participant
-} catch {
-reply('bot is not admin')
+const key = {
+    remoteJid: m.msg.contextInfo.remoteJid,
+    fromMe: false,
+    id: m.msg.contextInfo.stanzaId,
+    participant: sisaco.decodeJid(m.msg.contextInfo.participant)
 }
 await sisaco.sendMessage(m.chat, { delete: key })
+
 break 
 //©from: dennis
 case 'autobug':
