@@ -179,10 +179,10 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: 
  const reptly = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
  if (budy.includes('wick')) { 
 sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
-}
+
  if (budy.includes('Wick')) { 
 sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
-}
+
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
 //©from: andik
@@ -375,7 +375,14 @@ case 'play': {
            },
          };      
       
-     sisaco.relayMessage(m.chat, templateMessage, { quoted: m });
+     sisaco.relayMessage(m.chat, templateMessage, externalAdReply: {
+                title: `𝑵𝑬𝑹𝑫𝒀 `,
+                body: `🧸𝑩𝑶𝑻`,
+                thumbnail: thumb,
+                mediaType: 2,
+                mediaUrl: `https://sisaco.web.app`,
+                sourceUrl: `https://sisaco.web.app`
+              },{ quoted: m });
      }
 break
 
