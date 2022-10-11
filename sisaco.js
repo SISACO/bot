@@ -375,14 +375,14 @@ case 'play': {
            },
          };      
       
-     sisaco.relayMessage(m.chat, templateMessage, contextInfo: { externalAdReply: {
+     sisaco.relayMessage(m.chat, templateMessage, { contextInfo: { externalAdReply: {
                 title: `𝑵𝑬𝑹𝑫𝒀 `,
                 body: `🧸𝑩𝑶𝑻`,
                 thumbnail: thumb,
                 mediaType: 2,
                 mediaUrl: `https://sisaco.web.app`,
                 sourceUrl: `https://sisaco.web.app`
-             }},{ quoted: m });
+             }}},{ quoted: m });
      }
 break
 
