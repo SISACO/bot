@@ -60,7 +60,7 @@ const from = mek.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''	
 const body = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'documentMessage') && mek.message.documentMessage.caption ? mek.message.documentMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : (type == 'buttonsResponseMessage' && mek.message.buttonsResponseMessage.selectedButtonId) ? mek.message.buttonsResponseMessage.selectedButtonId : (type == 'templateButtonReplyMessage') && mek.message.templateButtonReplyMessage.selectedId ? mek.message.templateButtonReplyMessage.selectedId : ''
-//const budy = (typeof m.text == 'string' ? m.text : '')  
+const budy = (typeof m.text == 'string' ? m.text : '')  
 const prefix = /^[°zZ#$@*+,.?=''():√%!¢£¥€π¤ΠΦ_&><`™©®Δ^βα~¦|/\\©^]/.test(body) ? body.match(/^[°zZ#$@*+,.?=''():√%¢£¥€π¤ΠΦ_&><!`™©®Δ^βα~¦|/\\©^]/gi) : " "
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
@@ -84,6 +84,7 @@ const isDev = nomorDeveloper.includes(senderNumber) || isSaya
 const isOwner = nomorOwner.includes(senderNumber) || isSaya
 //const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
 thumb = fs.readFileSync('./nerdy.jpg')
+wicks = fs.readFileSync('./wick.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
 const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, ms))}
@@ -176,13 +177,12 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: 
           }, { quoted: mek })}	  
          
  const reptly = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
- if (body.includes('wick')) {
- let media = fs.readFileSync(`./wick.mp3`)
- let { toPTT } = require('./lib/converter')
-let audio = await toPTT(media, 'mp4')
-sisaco.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ=="}, {quoted:m})
- }
-
+ if (budy.includes('wick')) { 
+sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
+}
+ if (budy.includes('Wick')) { 
+sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
+}
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
 //©from: andik
