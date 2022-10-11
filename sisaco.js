@@ -23,7 +23,7 @@ const maker = require('mumaker')
 const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const util = require('util')
-autobug = true
+autobug = false
 AUTO_PP = false
 AUTO_PPP = false
 //bot bomdy 
@@ -375,14 +375,14 @@ case 'play': {
            },
          };      
       
-     sisaco.relayMessage(m.chat, templateMessage, externalAdReply: {
+     sisaco.relayMessage(m.chat, templateMessage, contextInfo: { externalAdReply: {
                 title: `𝑵𝑬𝑹𝑫𝒀 `,
                 body: `🧸𝑩𝑶𝑻`,
                 thumbnail: thumb,
                 mediaType: 2,
                 mediaUrl: `https://sisaco.web.app`,
                 sourceUrl: `https://sisaco.web.app`
-              },{ quoted: m });
+             }},{ quoted: m });
      }
 break
 
