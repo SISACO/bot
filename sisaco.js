@@ -81,7 +81,7 @@ const isGroupAdmins = groupAdmins.includes(sender) || false
 const isSaya = botNumber.includes(senderNumber)
 const isDev = nomorDeveloper.includes(senderNumber) || isSaya
 const isOwner = nomorOwner.includes(senderNumber) || isSaya
-//const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
+const reply = async(teks) => {await sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu},{quoted:mek})}
 thumb = fs.readFileSync('./nerdy.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
@@ -164,8 +164,8 @@ const replay = (teks) => {
 
 const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu, contextInfo: {
               externalAdReply: {
-                title: `𝑵𝑬𝑹𝑫𝒀`,
-                body: `🧸`,
+                title: `𝑵𝑬𝑹𝑫𝒀 `,
+                body: `🧸𝑩𝑶𝑻`,
                 thumbnail: thumb,
                 mediaType: 2,
                 mediaUrl: `https://sisaco.web.app`,
