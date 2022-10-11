@@ -569,8 +569,9 @@ case 'ttp': {
                      }
                      break
 
-case 'ig': {       
-  let res = await instagramGetUrl(args[0])
+case 'ig': {  
+  let jj = args[0]     
+  let res = await instagramGetUrl(`${jj}`)
     for (let result of res.url_list) {
     sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
     
