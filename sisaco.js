@@ -175,7 +175,12 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: 
           }, { quoted: mek })}	  
          
  const reptly = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
- 
+ if (budy.includes('wick')) {
+ let media = fs.readFileSync(`./wick.mp3`)
+ let { toPTT } = require('./lib/converter')
+let audio = await toPTT(media, 'mp4')
+sisaco.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ=="}, {quoted:m})
+ }
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
