@@ -177,11 +177,11 @@ const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: 
           }, { quoted: mek })}	  
          
  const reptly = (teks) => { sisaco.sendMessage(from,{text: teks, jpegThumbnail: tu, contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}},{quoted:mek}  )}               
- if (budy.includes('wick')) { 
-sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
+ if (body.includes('wick')) { 
+sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}}, {quoted:m}) }
 
- if (budy.includes('Wick')) { 
-sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: wicks, sourceUrl: dygp }}}, {quoted:m}) }
+ if (body.includes('Wick')) { 
+sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}}, {quoted:m}) }
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
@@ -223,7 +223,16 @@ try{ let evaluate = await eval(`;(async () => {${parse} })()`).catch(e => { retu
 return reply(require('util').format(evaluate))} catch(e){
 return reply(require('util').format(e))}}
 
-
+                if (budy.startsWith('>')) {
+                    if (!isCreator) return reply(mess.owner)
+                    try {
+                        let evaled = await eval(budy.slice(2))
+                        if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
+                        await reply(evaled)
+                    } catch (err) {
+                        await reply(String(err))
+                    }
+                }
         //Public & Self\\
         if (!sisaco.public) {
             if (!m.key.fromMe) return
@@ -570,8 +579,8 @@ case 'ttp': {
                      break
 
 case 'ig': {  
-  let jj = args[0]     
-  let res = await instagramGetUrl(`${jj}`)
+  let jj = await String(args[0])     
+  let res = await instagramGetUrl(jj)
     for (let result of res.url_list) {
     sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
     
