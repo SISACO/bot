@@ -88,7 +88,7 @@ wicks = fs.readFileSync('./wick.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
 const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, ms))}
-        try { pporang = await sisaco.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)} catch { pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'}
+        try { pporang = await sisaco.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)} catch { pporang = 'https://telegra.ph/file/ba951c9db3db8db282c8b.jpg'}
 		const ppuser = await getBuffer(pporang)
 	
 	//reply link wa
@@ -579,7 +579,7 @@ case 'ttp': {
                      break
 
 case 'ig': {  
-  let jj = await String(args[0])     
+  let jj = await String(`args[0]`)     
   let res = await instagramGetUrl(jj)
     for (let result of res.url_list) {
     sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
