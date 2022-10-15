@@ -102,7 +102,21 @@ const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, 
 const replay = (teks) => {
               sisaco.sendMessage(m.chat, { text: teks,  contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: `${global.ttt}`, sourceUrl: fgyt }}}, {quoted: m})}
 		
-
+const menufollow = (hehe) => {
+			ano = fs.readFileSync('./follow.webp')
+			simple.sendMessage(hehe, { sticker: ano, contextInfo: {
+			forwardingScore:999,
+            isForwarded:true, 
+            mentionedJid: [m.sender],
+			externalAdReply: { 
+			title: "FOLLOW ME ON INSTAGRAM ", 
+			mediaType: 1, 
+			body: "Website Owner", 
+			thumbnail: thumb, 
+			previewType: "PHOTO",
+			sourceUrl: `https://instagram.com/sisaco2.0`}}}, 
+			{ quoted: m })
+		}	
 
 // pesan sementara
 		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
@@ -482,25 +496,7 @@ case 'true2':
     console.log(body);
   });
 break
-case 'veriphone':
-  reply(mess.wait)
-  const dripdrop = {
-    method: 'GET',
-    url: 'https://veriphone.p.rapidapi.com/verify',
-    qs: {phone: `${text}`},
-    headers: {
-      'X-RapidAPI-Key': '837661b454msh274b6753ca80823p11c653jsn973bb2a55a34',
-      'X-RapidAPI-Host': 'veriphone.p.rapidapi.com',
-      useQueryString: true
-    }
-  };
-  let mhati = require('request')
-  mhati(dripdrop, function (error, response, body) {
-    if (error) throw new Error(error);
-    reply(body);
-    console.log(body);
-  });
-  break
+
   
 case 'ytmp3':  case 'ytmusic': {    
 let { yta } = require('./lib/y2mate')
@@ -1063,7 +1059,7 @@ await fs.unlinkSync(media)
 }
 break
 	case 'tourl': {
-
+menufollow(from)
 reply(mess.wait)
 let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
 let media = await sisaco.downloadAndSaveMediaMessage(quoted)
