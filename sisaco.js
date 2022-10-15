@@ -88,7 +88,7 @@ wicks = fs.readFileSync('./wick.jpg')
 const languagecode = JSON.parse(fs.readFileSync('./lib/languages.json'))
 const text = q = args.join(" ")
 const sleep = async (ms) => { return new Promise(resolve => setTimeout(resolve, ms))}
-        try { pporang = await sisaco.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)} catch { pporang = 'https://telegra.ph/file/ba951c9db3db8db282c8b.jpg'}
+        try { pporang = await sisaco.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)} catch { pporang = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'}
 		const ppuser = await getBuffer(pporang)
 	
 	//reply link wa
@@ -450,6 +450,19 @@ break
                 }
             }
             break
+case 'igreel': {	            
+if (!text) throw '*Enter a Link Query!*'
+const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper')
+if (!isUrl(args[0]) && !args[0].includes('instagram.com')) throw '*The link you provided is not valid*'
+   
+instagramdlv3(`${text}`).then(async (data) => {            
+var buf = await getBuffer(data[0].thumbnail)        
+sisaco.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m })
+}).catch((err) => {
+reply(`*Failed to download media and send videos*`)
+})
+}
+break
 case 'call':
 if (!isOwner && !msg.key.fromMe) return reply('Fitur Ini Hanya Dapat Digunakan Oleh Developer!')
 if (!dn) return reply(`Silahkan masukkan nomor!\nContoh: ${prefix}call +${senderNumber}`)
