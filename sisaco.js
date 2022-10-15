@@ -60,7 +60,7 @@ const from = mek.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''	
 const body = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'documentMessage') && mek.message.documentMessage.caption ? mek.message.documentMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : (type == 'buttonsResponseMessage' && mek.message.buttonsResponseMessage.selectedButtonId) ? mek.message.buttonsResponseMessage.selectedButtonId : (type == 'templateButtonReplyMessage') && mek.message.templateButtonReplyMessage.selectedId ? mek.message.templateButtonReplyMessage.selectedId : ''
-const budy = (typeof m.text == 'string' ? m.text : '')  
+const budy = (typeof m.text == 'string' ? m.text : '')
 const prefix = /^[°zZ#$@*+,.?=''():√%!¢£¥€π¤ΠΦ_&><`™©®Δ^βα~¦|/\\©^]/.test(body) ? body.match(/^[°zZ#$@*+,.?=''():√%¢£¥€π¤ΠΦ_&><!`™©®Δ^βα~¦|/\\©^]/gi) : " "
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
@@ -104,7 +104,7 @@ const replay = (teks) => {
 		
 const menufollow = (hehe) => {
 			ano = fs.readFileSync('./follow.webp')
-			simple.sendMessage(hehe, { sticker: ano, contextInfo: {
+			sisaco.sendMessage(hehe, { sticker: ano, contextInfo: {
 			forwardingScore:999,
             isForwarded:true, 
             mentionedJid: [m.sender],
@@ -325,6 +325,34 @@ const canvas = Canvas.createCanvas(447, 686);
 sisaco.sendImage(m.chat, canvas.toBuffer(), 'test')
 }
 break
+case 'resize': {
+    if (!m.mtype === "imageMessage") return reply("No es una imagen")
+    if (!text) return reply(`Ejemplo: ${prefix + command} 300x300`)
+    let p = text.split("x")[0]
+    let l = text.split("x")[1]
+    let media = await sisaco.downloadAndSaveMediaMessage(quoted, "image")
+    let ran = getRandom('.jpg')
+    exec(`ffmpeg -i ${media} -vf scale=${p}:${l} ${ran}`, async (err) => { 
+      fs.unlinkSync(media)
+      if (err) return setReply(err)
+      let buffer = fs.readFileSync(ran)
+      await sisaco.sendMessage(m.chat, {
+        caption: `hola @${m.sender.split("@")[0]}`, 
+        image: buffer,
+        contextInfo: thumb
+      },{ quoted: m })
+      fs.unlinkSync(ran)
+    })
+  } 
+    break
+
+            case 'delete': case 'del': {
+                if (!m.quoted) throw false
+                let { chat, fromMe, id, isBaileys } = m.quoted
+                if (!isBaileys) throw '¡El mensaje no fue enviado por mí bot!'
+                sisaco.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
+            }
+            break
 
  case 'to64' : {
 sisco = Buffer.from(m.quoted.jpegThumbnail).toString('base64');
@@ -355,6 +383,58 @@ envíame por t.me/fgsupp_bot el *audio + comando* con en el que responderá
    
 }
 break
+            case 'cellinfo': {
+                         if (!text) throw `Ejemplo : ${prefix + command} samsung`
+            let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, 'apikey'))
+            let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
+let capt = `⭔ Title: ${judul}
+⭔ Realease: ${rilis}
+⭔ Tamaño: ${ukuran}
+⭔ Tipo: ${type}
+⭔ Almacenamiento: ${storage}
+⭔ Monitor: ${display}
+⭔ Pulgadas: ${inchi}
+⭔ Píxel: ${pixel}
+⭔ Píxel de vídeo: ${videoPixel}
+⭔ Ram: ${ram}
+⭔ Chipset: ${chipset}
+⭔ Batería: ${batrai}
+⭔ Marca de batería: ${merek_batre}
+⭔ Detalle: ${detail}`
+            sisaco.sendImage(m.chat, thumb, capt, m)
+            }
+            break
+	                case 'SsWeb': case 'ssweb': case 'Ssweb': case 'ScreenshotWeb': case 'screenshotweb':{
+                 if (!text) throw `Ejemplo: *${prefix + command} https://github.com/CarlosTwT*`
+                 
+                 sisaco.sendMessage(m.chat, {image: {url: `https://api.popcat.xyz/screenshot?url=${text}`}})
+            }
+            break
+            case 'npmsearch':{
+ let fetch = require('node-fetch') 
+	if (!text) throw `_Ingresa el nombre del paquete npm_\n_Ejemplo_ : ${prefix}npmsearch whatsapp-web.js`
+	let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
+	let { objects } = await res.json()
+	if (!objects.length) throw `Query "${text}" not found :/`
+	let txt = objects.map(({ package: pkg }) => {
+		return `*${pkg.name}* (v${pkg.version})\n_${pkg.links.npm}_\n_${pkg.description}_`
+	}).join`\n\n`
+	m.reply(txt)
+}
+break
+        case 'spotify':
+         if (args.length == 0) return reply(`Ejemplo: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
+            axios.get(`https://api.lolhuman.xyz/api/spotify?apikey=85faf717d0545d14074659ad&url=${args[0]}`).then(({ data }) => {
+                var caption = `Titulo : ${data.result.title}\n`
+                caption += `Artista : ${data.result.artists}\n`
+                caption += `Duracion : ${data.result.duration}\n`
+                caption += `Popularidad : ${data.result.popularity}\n`
+                caption += `Preview : ${data.result.preview_url}\n`
+                sisaco.sendMessage(from, { image: { url: data.result.thumbnail }, caption }).then(() => {
+                    sisaco.sendMessage(from, { audio: { url: data.result.link }, mimetype: 'audio/mp4', fileName: `${data.result.title}.mp3`, ptt: true })
+                })
+            })
+            break
 case 'play': {
   if (!text) return reply(`✳️ *Type correctly*\n\n📌 Example *${prefix + command}* Lil Peep hate my life `)
   let vid = (await youtubeSearch(text)).video[0]
