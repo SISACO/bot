@@ -415,6 +415,93 @@ const canvas = Canvas.createCanvas(500, 500);
 sisaco.sendImage(m.chat, canvas.toBuffer(), 'buy it bro🥵')
 }
 break
+case 'google': {
+    reply(mess.wait)
+    const { googleIt } = require('@bochilteam/scraper')
+    let full = /f$/i.test(command)
+    let text = args.join` `
+    if (!text) return reply(m.chat, 'No text to search', m)
+    let url = 'https://google.com/search?q=' + encodeURIComponent(text)
+    let search = await googleIt(text)
+    let msg = search.articles.map(({
+        // header,
+        title,
+        url,
+        description
+    }) => {
+        return `*${title}*\n_${url}_\n_${description}_`
+    }).join('\n\n')
+    try {
+        let ss = await (await fetch(('nrtm', '/api/ssweb', { delay: 1000, url, full }))).arrayBuffer()
+        if (/<!DOCTYPE html>/i.test(ss.toBuffer().toString())) throw ''
+        await sisaco.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m)
+    } catch (e) {
+        reply(msg)
+    }
+}
+   break
+ case 'image':case 'gimage': case 'googleimage': {
+reply(mess.wait)
+if (!text) throw `Example : ${prefix + command} ml nana`
+let gis = require('g-i-s')
+gis(text, async (error, result) => {
+n = result
+images = n[Math.floor(Math.random() * n.length)].url
+let buttons = [
+  {buttonId: `gimage ${text}`, buttonText: {displayText: 'Next Image'}, type: 1}
+   ]
+   let buttonMessage = {
+  image: { url: images },
+  caption: `❰ 𝗚𝗢𝗢𝗚𝗟𝗘 𝗜𝗠𝗔𝗚𝗘 ❱
+*𝗤𝗨𝗘𝗥𝗬* : ${text}
+*𝗠𝗘𝗗𝗜𝗔 𝗨𝗥𝗟* : ${images}`,
+  footer: sisaco.user.name,
+  buttons: buttons,
+  headerType: 4
+   }
+   sisaco.sendMessage(m.chat, buttonMessage, { quoted: m })
+})
+}
+break
+case 'true2':
+  reply(mess.wait)
+  const dripska = {
+    method: 'GET',
+    url: 'https://phonenumbervalidatefree.p.rapidapi.com/ts_PhoneNumberValidateTest.jsp',
+    qs: {number: `${text}`},
+    headers: {
+      'X-RapidAPI-Key': '837661b454msh274b6753ca80823p11c653jsn973bb2a55a34',
+      'X-RapidAPI-Host': 'phonenumbervalidatefree.p.rapidapi.com',
+      useQueryString: true
+    }
+  };
+  let dhidhi = require('request')
+  dhidhi(dripska, function (error, response, body) {
+    if (error) throw new Error(error);
+    reply(body);
+    console.log(body);
+  });
+break
+case 'veriphone':
+  reply(mess.wait)
+  const dripdrop = {
+    method: 'GET',
+    url: 'https://veriphone.p.rapidapi.com/verify',
+    qs: {phone: `${text}`},
+    headers: {
+      'X-RapidAPI-Key': '837661b454msh274b6753ca80823p11c653jsn973bb2a55a34',
+      'X-RapidAPI-Host': 'veriphone.p.rapidapi.com',
+      useQueryString: true
+    }
+  };
+  let mhati = require('request')
+  mhati(dripdrop, function (error, response, body) {
+    if (error) throw new Error(error);
+    reply(body);
+    console.log(body);
+  });
+  break
+  
 case 'ytmp3':  case 'ytmusic': {    
 let { yta } = require('./lib/y2mate')
 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
@@ -455,7 +542,7 @@ if (!text) throw '*Enter a Link Query!*'
 const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper')
 if (!isUrl(args[0]) && !args[0].includes('instagram.com')) throw '*The link you provided is not valid*'
    
-instagramdlv3(`${text}`).then(async (data) => {            
+instagramdlv2(`${text}`).then(async (data) => {            
 var buf = await getBuffer(data[0].thumbnail)        
 sisaco.sendMessage(m.chat, { video: { url: data[0].url }, jpegThumbnail:buf, caption: `${botname}`}, { quoted: m })
 }).catch((err) => {
