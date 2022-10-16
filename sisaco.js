@@ -425,12 +425,11 @@ break
     repo = repo.replace(/.git$/, '')
     let url = `https://api.github.com/repos/${user}/${repo}/zipball`
     let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
-    simple.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => reply(mess.error))
+    sisaco.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => reply(mess.error))
 			break
             case 'phone': {
-                         if (!text) throw `Ejemplo : ${prefix + command} samsung`
-                         let spi = '86f5d90096'
-            let res = await fetch(`https://zenzapis.xyz/webzone/gsmarena?query=${text}&apikey=${spi}`)
+                         if (!text) throw `Ejemplo : ${prefix + command} samsung`                         
+            let res = await fetchJson(`https://zenzapis.xyz/webzone/gsmarena?query=${text}&apikey=86f5d90096`)
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
 let capt = `⭔ Title: ${judul}
 ⭔ Realease: ${rilis}
