@@ -1312,7 +1312,7 @@ break
 
 //©from: dennis x baileys
 case '03':
-sendLstMessage(from, 'test', 'test', 'test', 'test', [{title: "Section 1",rows: [{title: "Option 1", rowId: "option1"},{title: "Option 2", rowId: "option2", description: "This is a description"}]},{title: "Section 2",rows: [{title: "Option 3", rowId: "option3"},{title: "Option 4", rowId: "option4", description: "This is a description V2"}]}])
+sendLstMessage(from, 'test', 'test', 'test', 'test', [{title: "Section 1",rows: [{title: "Option 1", rowId: `${prefix}ping`},{title: "Option 2", rowId: `.ping`, description: "This is a description"}]},{title: "Section 2",rows: [{title: "Option 3", rowId: '${prefix}ping'},{title: "Option 4", rowId: "option4", description: "This is a description V2"}]}])
 break
 
 //©from: dennis
