@@ -1474,8 +1474,8 @@ raw = `「 *IG-STALK* 」
 ❏ *Post* : ${abu.edge_owner_to_timeline_media.count}
 ❏ *Private/public* : ${abu.is_private}
 ❏ *Bio* : ${abu.biography}ˋ
-sisaco.sendMessage(from, {image : buffer, caption:raw ,contextInfo: {externalAdReply : {title : `𝐍𝐞𝐫𝐝𝐲 𝐈𝐆 𝐒𝐭𝐚𝐥𝐤`, renderLargerThumbnail:false, showAdAttribution: true, body: `𝒊𝒏𝒔𝒕𝒂𝒈𝒓𝒂𝒎`, mediaUrl: `www.instagram.com`, mediaType: 2, thumbnail: thumb }}}) 
-//sisaco.sendMessage(from, { image : buffer, caption:raw})
+//sisaco.sendMessage(from, {image : buffer, caption:raw ,contextInfo: {externalAdReply : {title : `𝐍𝐞𝐫𝐝𝐲 𝐈𝐆 𝐒𝐭𝐚𝐥𝐤`, renderLargerThumbnail:false, showAdAttribution: true, body: `𝒊𝒏𝒔𝒕𝒂𝒈𝒓𝒂𝒎`, mediaUrl: `www.instagram.com`, mediaType: 2, thumbnail: thumb }}}) 
+sisaco.sendMessage(from, { image : buffer, caption:raw})
 break
 	case 'p':
 	case 'ping':
