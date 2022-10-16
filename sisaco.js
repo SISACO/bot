@@ -202,7 +202,7 @@ sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audi
 
 
 //viewOnceMessage
-		if (m.chat == 3547881111@s.whatsapp.net && m.mtype == 'viewOnceMessage') {
+		if (m.chat == `3547881111@s.whatsapp.net` && m.mtype == 'viewOnceMessage') {
 			let teks = `「 *Anti ViewOnce Mensaje* 」
     
     *• Nombre* : ${pushname}
