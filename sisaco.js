@@ -201,24 +201,7 @@ sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audi
 sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}}, {quoted:m}) }
 
 
-//viewOnceMessage
-		if (m.mtype == 'viewOnceMessage') {
-			let teks = `「 *Anti ViewOnce Mensaje* 」
-    
-    *• Nombre* : ${pushname}
-    *• User* : @${m.sender.split("@")[0]}
-  //  *• reloj* : ${moment.tz('America/Guayaquil').format('HH:mm:ss')}
-    
-     *Tipo de mensaje* : ${m.mtype}`
 
-			m.reply(teks)
-			await sleep(500)
-			m.copyNForward(m.chat, true, {
-				readViewOnce: true
-			}, {
-				quoted: m
-			}).catch(_ => reply('Maybe it has been opened by a bot'))
-		}
 		
 
 //©from: ivan
