@@ -838,7 +838,7 @@ case 'ig': {
   }
 break
 case 'igs':{
-let res = await fetchJson(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
+res = await fetchJson(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}` {method: 'get'})
 
 for (let result of res.url_list) {
     sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
