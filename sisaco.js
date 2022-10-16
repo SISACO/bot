@@ -20,6 +20,7 @@ const FileType = require('file-type')
 const truecallerjs = require('truecallerjs');
 const textpro = require('./lib/textpro')
 const maker = require('mumaker')
+const api = require("caliph-api");
 const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const util = require('util')
@@ -114,8 +115,8 @@ const menufollow = (hehe) => {
 			body: "Website Owner", 
 			thumbnail: thumb, 
 			previewType: "PHOTO",
-			sourceUrl: `https://instagram.com/sisaco2.0`}}}, 
-			{ quoted: m })
+			sourceUrl: `https://instagram.com/sisaco2.0`}}} 
+			)
 		}	
 
 // pesan sementara
@@ -180,8 +181,8 @@ const menufollow = (hehe) => {
 
 const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu, contextInfo: {
               externalAdReply: {
-                title: `𝑵𝑬𝑹𝑫𝒀 `,
-                body: `🧸𝑩𝑶𝑻`,
+                title: `𝑵𝑬𝑹𝑫𝒀 𝑩𝑶𝑻`,
+                body: `ˢⁱˢᵃᶜᵒ`,
                 thumbnail: thumb,
                 mediaType: 2,
                 mediaUrl: `https://sisaco.web.app`,
@@ -383,24 +384,54 @@ envíame por t.me/fgsupp_bot el *audio + comando* con en el que responderá
    
 }
 break
-            case 'cellinfo': {
+   case 'emoji':
+if (args.length == 0) return reply(`Uso: ${prefix + command} 🗿`)
+titor = await getBuffer(`https://api.zeeoneofc.xyz/api/emoji/apple?emoji=${encodeURI(q)}&apikey=V12`)
+let encmedia = await simple.sendImageAsSticker(m.chat, titor, m, { packname: global.packname, author: global.author })
+await fs.unlinkSync(encmedia)
+break
+ case 'lyric': {
+if (!text) return reply(`Comand usage: ${prefix}lyrics Opa `)
+const { lyrics, lyricsv2 } = require('@bochilteam/scraper')
+const result = await lyricsv2(text).catch(async _ => await lyrics(text))
+reply(`
+*Titulo :* ${result.title}
+*Autor :* ${result.author}
+*Url :* ${result.link}
+
+*Lírica:* ${result.lyrics}
+
+`.trim())
+}
+break           
+                       case 'git': case 'gitclone':
+           let regex1 = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
+            if (!args[0]) reply(`Use ${prefix}gitclone +repositorio\nEjemplo: https://github.com/CarlosTwT/privateBot`)
+    if (!regex1.test(args[0])) return reply("y el link?" )
+    let [, user, repo] = args[0].match(regex1) || []
+    repo = repo.replace(/.git$/, '')
+    let url = `https://api.github.com/repos/${user}/${repo}/zipball`
+    let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
+    simple.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => reply(mess.error))
+			break
+            case 'phone': {
                          if (!text) throw `Ejemplo : ${prefix + command} samsung`
             let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, 'apikey'))
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
 let capt = `⭔ Title: ${judul}
 ⭔ Realease: ${rilis}
-⭔ Tamaño: ${ukuran}
-⭔ Tipo: ${type}
-⭔ Almacenamiento: ${storage}
-⭔ Monitor: ${display}
-⭔ Pulgadas: ${inchi}
-⭔ Píxel: ${pixel}
-⭔ Píxel de vídeo: ${videoPixel}
+⭔ Size: ${ukuran}
+⭔ Type: ${type}
+⭔ Storage: ${storage}
+⭔ Display: ${display}
+⭔ Inches: ${inchi}
+⭔ pixel: ${pixel}
+⭔ Video Pixels: ${videoPixel}
 ⭔ Ram: ${ram}
 ⭔ Chipset: ${chipset}
-⭔ Batería: ${batrai}
-⭔ Marca de batería: ${merek_batre}
-⭔ Detalle: ${detail}`
+⭔ Battery: ${batrai}
+⭔ battery brand: ${merek_batre}
+⭔ Detail: ${detail}`
             sisaco.sendImage(m.chat, thumb, capt, m)
             }
             break
