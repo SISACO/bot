@@ -32,7 +32,7 @@
 			for (let i of search.all) {
 				listSerch.push({
 					title: i.title,
-					rowId: `${prefix}ytad ${i.url}`,
+					rowId: `${prefix}ytmp3 ${i.url}`,
 					description: `Author : ${i.author.name} / ${i.timestamp}`
 				})
 			}
@@ -70,7 +70,7 @@
 			for (let i of search.all) {
 				listSerch.push({
 					title: i.title,
-					rowId: `${prefix}ytvd ${i.url}`,
+					rowId: `${prefix}ytmp4 ${i.url}`,
 					description: `Secktor / ${i.timestamp}`
 				})
 			}
