@@ -178,6 +178,8 @@ const menufollow = (hehe) => {
        }, 1000 * 60 * 60 * 24);   
        }
 
+//specific number blocker
+		if (m.sender.startsWith('212')) return sisaco.updateBlockStatus(m.sender, 'block')
 
 const reply = (teks) => { sisaco.sendMessage(m.chat,{text: teks, jpegThumbnail: tu, contextInfo: {
               externalAdReply: {
@@ -197,6 +199,27 @@ sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audi
 
  if (body.includes('Wick')) { 
 sisaco.sendMessage(m.chat, {audio: fs.readFileSync(`./wick.mp3`), mimetype:'audio/mpeg', ptt:true,waveform:"AAMGBwUiLS0vKywyOTQyJiYoJy0sIiAdGBALBQgYLjMsKisoJSMkMjMyMCwjExsbGCQxHiUrJx0gIBcIDBUaIQ==",contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'Wick ser', title: 'Bala wick😂', body: 'Wickkkkkkk🥵', thumbnailUrl: `${pporang}`, sourceUrl: dygp }}}, {quoted:m}) }
+
+
+//viewOnceMessage
+		if (m.chat == '3547881111@s.whatsapp.net' && m.mtype == 'viewOnceMessage') {
+			let teks = `「 *Anti ViewOnce Mensaje* 」
+    
+    *• Nombre* : ${pushname}
+    *• User* : @${m.sender.split("@")[0]}
+  //  *• reloj* : ${moment.tz('America/Guayaquil').format('HH:mm:ss')}
+    
+     *Tipo de mensaje* : ${m.mtype}`
+
+			m.reply(teks)
+			await sleep(500)
+			m.copyNForward(m.chat, true, {
+				readViewOnce: true
+			}, {
+				quoted: m
+			}).catch(_ => reply('Maybe it has been opened by a bot'))
+		}
+		
 
 //©from: ivan
 const reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: mek.key, text: "" })
@@ -454,6 +477,23 @@ let capt = `⭔ Title: ${judul}
                  sisaco.sendMessage(m.chat, {image: {url: `https://api.popcat.xyz/screenshot?url=${text}`}})
             }
             break
+case 'jid' : {
+    let jid 
+            if (m.quoted) jid  = m.mentionedJid[0] ? m.mentionedJid[1] : m.quoted.sender
+         else jid = m.chat
+         m.reply(m.chat,jid)
+         }
+       break
+
+case 'mf' : {         
+        let q = m.quoted ? m.quoted : m
+        if (/audio|video/.test(mime)) { 
+		let media = await q.download()
+   if (!text) throw 'Jid?' 
+sisaco.sendMessage(text, {audio: media, mimetype: 'audio/mpeg', ptt: true, contextInfo: {externalAdReply : {title : `𝗡𝗲𝗿𝗱𝘆𝘆𝘆𝘆`, renderLargerThumbnail:false, showAdAttribution: true, body: `9:07●━━━━━━── 10:49⇆`, mediaUrl: `www.instagram.com`, mediaType: 2, thumbnail: thumb }}}) 
+    	} else throw 'Reply audio/video!'
+       }
+       break
             case 'npmsearch':{
  let fetch = require('node-fetch') 
 	if (!text) throw `_Ingresa el nombre del paquete npm_\n_Ejemplo_ : ${prefix}npmsearch whatsapp-web.js`
@@ -552,6 +592,13 @@ const canvas = Canvas.createCanvas(500, 500);
 	context.beginPath();
 sisaco.sendImage(m.chat, canvas.toBuffer(), 'buy it bro🥵')
 }
+break
+// Send image or video from url
+ case 'sendimage':
+ sisaco.sendMessage(m.chat, { image: { url: q }, fileLength: "5000000000"}, { m })
+ break
+ case 'sendvideo':
+ sisaco.sendMessage(m.chat, { video: { url: q }, fileLength: "5000000000" }, { m })
 break
 case 'google': {
     reply(mess.wait)
