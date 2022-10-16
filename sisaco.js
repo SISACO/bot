@@ -429,7 +429,7 @@ break
 			break
             case 'phone': {
                          if (!text) throw `Ejemplo : ${prefix + command} samsung`
-            let res = await fetchJson(`https://zenzapis.xyz/webzone/gsmarena?query=`${text}`&apikey=86f5d90096`)
+            let res = await fetchJson('https://zenzapis.xyz/webzone/gsmarena?query=`${text}`&apikey=86f5d90096')
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
 let capt = `⭔ Title: ${judul}
 ⭔ Realease: ${rilis}
