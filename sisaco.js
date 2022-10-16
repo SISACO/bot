@@ -461,6 +461,17 @@ let capt = `⭔ Title: ${judul}
                  sisaco.sendMessage(m.chat, {image: {url: `https://api.popcat.xyz/screenshot?url=${text}`}})
             }
             break
+
+
+case 'inss' : {
+let { igApi, getCookie } = require("insta-fetcher")
+let ig = new igApi("53456666796%3AnwtEmQ5Q07EnZR%3A6%3AAYeGrcLmqf0pJbpWoi2PvQF0acA5SptryeQMSmLN6g");
+ig.fetchUser("sisaco2.0").then((res) => {
+  reply(res);
+});
+
+}
+break
 case 'jid' : {
     let jid 
             if (m.quoted) jid  = m.mentionedJid[0] ? m.mentionedJid[1] : m.quoted.sender
