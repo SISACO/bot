@@ -742,7 +742,7 @@ axios.get('https://tinyurl.com/api-create.php?url=`${result}`').then((G) => {
  }
  }
 break
-case 'true':{
+case 'true3':{
 var numbr = args[0]
 
 var searchData = {
@@ -766,7 +766,7 @@ reply(data.name)
 }
 break
 
-case 'true3' :{
+case 'true' :{
 
         let SearchNum;
         if (mek.message.extendedTextMessage) {
@@ -787,34 +787,31 @@ case 'true3' :{
         var sn = truecallerjs.searchNumber(searchDataa);
         sn.then(function (response) {
             let data = response.data[0];
-            const trueSend = `*Name:* ${data.name}
-*Country:* ${data.addresses[0].address ? data.addresses[0].address : ""}
-*City:* ${data.addresses[0].city ? data.addresses[0].city : ""}
-*Provider:* ${data.phones[0].carrier ? data.phones[0].carrier : ""}
-*Number Type:* ${data.phones[0].numberType ? data.phones[0].numberType : ""}
-*Email:* ${data.internetAddresses[0] ? data.internetAddresses[0].id : ""}
-`
-            sisaco.sendMessage(from, { text: trueSend }, { quoted: m })
+            const trueSend = `╭──〔 *NUMBER INFO* 〕
+├ *ɴᴜᴍʙᴇʀ:* ${data.phones[0].e164Format ? data.phones[0].e164Format : ""}   
+├ *ɴᴀᴍᴇ:* ${data.name}
+├ *ᴄᴀʀᴇᴇʀ:* ${data.phones[0].carrier ? data.phones[0].carrier : ""}
+├ *ᴄᴏᴜɴᴛʀʏ:* ${data.addresses[0].address ? data.addresses[0].address : ""}
+├ *ᴄɪᴛʏ:* ${data.addresses[0].city ? data.addresses[0].city : ""}
+├ *ɴᴜᴍʙᴇʀ ᴛʏᴘᴇ:* ${data.phones[0].numberType ? data.phones[0].numberType : ""}
+├ *ᴇᴍᴀʟ:* ${data.internetAddresses[0] ? data.internetAddresses[0].id : ""}
+╰──────────────`
+            sisaco.sendMessage(from, { text: trueSend, jpegThumbnail: tu},{quoted:mek}) 
             
         });
 }
 
 break
-  /* resultt = `╭──〔 *NUMBER INFO* 〕
-├ *ɴᴜᴍʙᴇʀ:* ${data.phones.e164Format}
-├ *ɴᴀᴍᴇ:* ${data.name}
-├ *sᴄᴏʀᴇ:* ${data.score}
-├ *ᴀᴄᴄᴇss:* ${data.access}
-├ *ᴄᴀʀᴇᴇʀ:* ${data.phones.carrier}
-├ *ᴅɪᴀʟɪɴɢ ᴄᴏᴅᴇ:* ${data.phones.dialingCode}
-├ *ᴄᴏᴜɴᴛʀʏ:* "IN"
-├ *ᴄɪᴛʏ:* ${data.addresses.city}
-├ *ᴛʏᴘᴇ:* ${data.phones.type}
-├ *ᴛɪᴍᴇ ᴢᴏɴᴇ:* ${data.addresses.timeZone}
-╰──────────────`*/
-    
-//sisaco.sendMessage(from, { text: resultt, jpegThumbnail: tu},{quoted:mek}) 
-
+  /* resultt = */
+/*`*Name:* ${data.name}
+*Number:* ${data.phones[0].e164Format ? data.phones[0].e164Format : ""}            
+*Country:* ${data.addresses[0].address ? data.addresses[0].address : ""}
+*City:* ${data.addresses[0].city ? data.addresses[0].city : ""}
+*Provider:* ${data.phones[0].carrier ? data.phones[0].carrier : ""}
+*Number Type:* ${data.phones[0].numberType ? data.phones[0].numberType : ""}
+*Email:* ${data.internetAddresses[0] ? data.internetAddresses[0].id : ""}
+`*/    
+//
       //╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺╺
       case 'igdl':
       case 'instagram': {
