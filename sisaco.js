@@ -11,6 +11,7 @@ const path = require('path')
 const { youtubeSearch } = require('@bochilteam/scraper')
 const cheerio = require ("cheerio")
 const hx = require("hxz-api")
+let { igApi, getCookie } = require("insta-fetcher")
 const { tlang } = require('./lib/scraper')
 const yts = require("yt-search");
 const axios = require('axios')
