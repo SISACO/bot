@@ -338,7 +338,7 @@ case 'resize': {
       if (err) return setReply(err)
       let buffer = fs.readFileSync(ran)
       await sisaco.sendMessage(m.chat, {
-        caption: `hola @${m.sender.split("@")[0]}`, 
+        caption: `halo @${m.sender.split("@")[0]}`, 
         image: buffer,
         contextInfo: thumb
       },{ quoted: m })
@@ -347,13 +347,26 @@ case 'resize': {
   } 
     break
 
-            case 'delete': case 'del': {
-                if (!m.quoted) throw false
-                let { chat, fromMe, id, isBaileys } = m.quoted
-                if (!isBaileys) throw '¡El mensaje no fue enviado por mí bot!'
-                sisaco.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
-            }
-            break
+ case 'crop': {
+    if (!m.mtype === "imageMessage") return reply("No es una imagen")
+    if (!text) return reply(`Ejemplo: ${prefix + command} 300x300`)
+    let p = text.split("x")[0]
+    let l = text.split("x")[1]
+    let media = await sisaco.downloadAndSaveMediaMessage(quoted, "image")
+    let ran = getRandom('.jpg')
+    exec(`ffmpeg -i ${media} -vf crop=${p}:${l} ${ran}`, async (err) => { 
+      fs.unlinkSync(media)
+      if (err) return setReply(err)
+      let buffer = fs.readFileSync(ran)
+      await sisaco.sendMessage(m.chat, {
+        caption: `halo @${m.sender.split("@")[0]}`, 
+        image: buffer,
+        contextInfo: thumb
+      },{ quoted: m })
+      fs.unlinkSync(ran)
+    })
+  } 
+    break           
 
  case 'to64' : {
 sisco = Buffer.from(m.quoted.jpegThumbnail).toString('base64');
@@ -386,8 +399,8 @@ envíame por t.me/fgsupp_bot el *audio + comando* con en el que responderá
 break
    case 'emoji':
 if (args.length == 0) return reply(`Uso: ${prefix + command} 🗿`)
-titor = await getBuffer(`https://api.zeeoneofc.xyz/api/emoji/apple?emoji=${encodeURI(q)}&apikey=V12`)
-let encmedia = await simple.sendImageAsSticker(m.chat, titor, m, { packname: global.packname, author: global.author })
+titor = await getBuffer(`https://api.zeeoneofc.xyz/api/emoji/apple?emoji=${encodeURI(q)}&apikey=86f5d90096`)
+let encmedia = await sisaco.sendImageAsSticker(m.chat, titor, m, { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 break
  case 'lyric': {
@@ -416,7 +429,7 @@ break
 			break
             case 'phone': {
                          if (!text) throw `Ejemplo : ${prefix + command} samsung`
-            let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, 'apikey'))
+            let res = await fetchJson(`https://zenzapis.xyz/webzone/gsmarena?query=`${text}`&apikey=86f5d90096`)
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
 let capt = `⭔ Title: ${judul}
 ⭔ Realease: ${rilis}
@@ -456,10 +469,10 @@ break
         case 'spotify':
          if (args.length == 0) return reply(`Ejemplo: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
             axios.get(`https://api.lolhuman.xyz/api/spotify?apikey=85faf717d0545d14074659ad&url=${args[0]}`).then(({ data }) => {
-                var caption = `Titulo : ${data.result.title}\n`
-                caption += `Artista : ${data.result.artists}\n`
-                caption += `Duracion : ${data.result.duration}\n`
-                caption += `Popularidad : ${data.result.popularity}\n`
+                var caption = `Title : ${data.result.title}\n`
+                caption += `Artist : ${data.result.artists}\n`
+                caption += `Duration : ${data.result.duration}\n`
+                caption += `Popularity : ${data.result.popularity}\n`
                 caption += `Preview : ${data.result.preview_url}\n`
                 sisaco.sendMessage(from, { image: { url: data.result.thumbnail }, caption }).then(() => {
                     sisaco.sendMessage(from, { audio: { url: data.result.link }, mimetype: 'audio/mp4', fileName: `${data.result.title}.mp3`, ptt: true })
@@ -957,7 +970,7 @@ break
 if (/image/.test(mime)) {
 let media = await quoted.download()
 reply('wait')
-let encmedia = await sisaco.sendImageAsSticker(m.chat, media,rpl, m,  { packname: global.packname, author: global.author })
+let encmedia = await sisaco.sendImageAsSticker(m.chat, media, m,  { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
 } else if (/video/.test(mime)) {
 if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
