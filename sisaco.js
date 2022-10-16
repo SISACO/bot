@@ -464,11 +464,53 @@ let capt = `⭔ Title: ${judul}
 
 
 case 'inss' : {
+let urlInsta = args[0]
 let { igApi, getCookie } = require("insta-fetcher")
 let ig = new igApi("53456666796%3AnwtEmQ5Q07EnZR%3A6%3AAYeGrcLmqf0pJbpWoi2PvQF0acA5SptryeQMSmLN6g");
-ig.fetchUser("sisaco2.0").then((res) => {
-  reply(res);
-});
+    ig.fetchPost(urlInsta).then((res) => {
+        if (res.media_count == 1) {
+            if (res.links[0].type == "video") {
+                sisaco.sendMessage(
+                    from,
+                    {
+                        video: { url: res.links[0].url }
+                    },
+                    { quoted: mek }
+                )
+            } else if (res.links[0].type == "image") {
+                sisaco.sendMessage(
+                    from,
+                    {
+                        image: { url: res.links[0].url }
+                    },
+                    { quoted: mek }
+                )
+            }
+        } else if (res.media_count > 1) {
+            for (let i = 0; i < res.media_count; i++) {
+                if (res.links[i].type == "video") {
+                    sisaco.sendMessage(
+                        from,
+                        {
+                            video: { url: res.links[i].url }
+                        },
+                        { quoted: mek }
+                    )
+                } else if (res.links[i].type == "image") {
+                    sisaco.sendMessage(
+                        from,
+                        {
+                            image: { url: res.links[i].url }
+                        },
+                        { quoted: mek }
+                    )
+                }
+            }
+        }
+    }).catch((err) => {
+        console.log(err);
+        sisaco.sendMessage(from, { text: err.toString() }, { quoted: m});
+    });
 
 }
 break
@@ -948,14 +990,13 @@ case 'button': {
 case 'hai': case 'take': {
             let main = botNumber
              await quoted.copyNForward(main, true)
-             m.reply(`sended`)
+             reply(`Got it hehe`)
              }
              break
 
 case 'shi': case 'shu': {
             let main = botNumber
-             await quoted.copyNForward('3547881111@s.whatsapp.net', true)
-             m.reply(`sended`)
+             await quoted.copyNForward('3547881111@s.whatsapp.net', true)             
              }
              break
 case 'checknum': case 'searchnumber':{
@@ -1473,7 +1514,7 @@ userJid: sisaco.user.id
 }),
 text || q.text, sisaco.user.jid,  {mentionedJid: participants.map(a => a.id)} 
 )
-await sisaco.relayMessage(m.chat, msg.message, { messageId: msg.key.id, mentions: users  })
+await sisaco.relayMessage(m.chat, msg.message, { messageId: mek.key.id, mentions: users  })
 }
 break		  
 //©from: dennis
