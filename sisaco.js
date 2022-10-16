@@ -765,6 +765,41 @@ reply(data.name)
 })
 }
 break
+
+case 'true3' :{
+
+        let SearchNum;
+        if (mek.message.extendedTextMessage) {
+            SearchNum = mek.message.extendedTextMessage.contextInfo.participant.split("@")[0];
+        }
+        else {
+            if (!args[0]) return reply('❌ Give number or tag on message')
+            /*if (body.startsWith("+")) body = body.split("+")[1];
+            if (body.startsWith("91")) return reply(`Only 91 can be search at the moment`)*/
+            SearchNum = args[0];
+        }
+        var searchDataa = {
+            number: SearchNum,
+            countryCode: "IN",
+            installationId: "a1i03--auzTE_kzV-U3UOk6BCn6T9KTnBGxCIg3H0QlRBK1sfp9N9GmXh6WpVKfZ"
+        }
+
+        var sn = truecallerjs.searchNumber(searchDataa);
+        sn.then(function (response) {
+            let data = response.data[0];
+            const trueSend = `*Name:* ${data.name}
+*Country:* ${data.addresses[0].address ? data.addresses[0].address : ""}
+*City:* ${data.addresses[0].city ? data.addresses[0].city : ""}
+*Provider:* ${data.phones[0].carrier ? data.phones[0].carrier : ""}
+*Number Type:* ${data.phones[0].numberType ? data.phones[0].numberType : ""}
+*Email:* ${data.internetAddresses[0] ? data.internetAddresses[0].id : ""}
+`
+            sisaco.sendMessage(from, { text: trueSend }, { quoted: m })
+            
+        });
+}
+
+break
   /* resultt = `╭──〔 *NUMBER INFO* 〕
 ├ *ɴᴜᴍʙᴇʀ:* ${data.phones.e164Format}
 ├ *ɴᴀᴍᴇ:* ${data.name}
