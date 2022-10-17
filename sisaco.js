@@ -1477,9 +1477,10 @@ raw = `「 *IG-STALK* 」
 sisaco.sendMessage(from, { image : buffer, caption:raw})
 }
 break
-	case 'p':
+
+/*	case 'p':
 	case 'ping':{
-	         
+	        
 			const timestamp = speed();
 			const latensi = speed() - timestamp
 			exec(`neofetch --stdout`, (error, stdout, stderr) => {
@@ -1492,7 +1493,7 @@ break
               reply(pingnya)   
 			})
 			}
-			break 
+			break */
 			
 case 'hidetag':{
 if (!quoted) return reply('reply to msg')
