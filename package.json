@@ -1,3 +1,4 @@
+
 {
   "name": "semar-bmd",
   "version": "1.0.0",
@@ -8,6 +9,9 @@
     "start": "node index.js",
     "dev": "pm2 start index.js"
   },
+"engines": {
+    "node": "15.x"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dcode-denpa/Semar-BMD.git"
