@@ -5,7 +5,6 @@ const { exec } = require('child_process')
 const speed = require('performance-now')
 const request= require('request')
 const { writeFile } = require('fs').promises;
-//const {createCanvas, createImageData, loadImage, registerFont} = require('canvas')
 const fs = require('fs')
 const path = require('path')
 const { youtubeSearch } = require('@bochilteam/scraper')
