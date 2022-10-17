@@ -1459,7 +1459,7 @@ break
 case 'delete': case 'd': case 'del':
 sisaco.sendMessage(from, { delete: { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true }})
 break
-case 'igstalk':
+case 'igstalk':{
 if (!dn) return reply(mess.error.cmd)
 anu = await fetchJson(`https://violetics.pw/api/stalk/instagram?apikey=185e-c6d9-7d49&username=${dn}`, {method: 'get'})
 if (anu.status == 400 || anu.isError == true) return reply(`${anu.message}`)
@@ -1475,9 +1475,10 @@ raw = `「 *IG-STALK* 」
 ❏ *Private/public* : ${abu.is_private}
 ❏ *Bio* : ${abu.biography} ˋ
 sisaco.sendMessage(from, { image : buffer, caption:raw})
+}
 break
 	case 'p':
-	case 'ping':
+	case 'ping':{
 	         
 			const timestamp = speed();
 			const latensi = speed() - timestamp
@@ -1490,6 +1491,7 @@ break
             else
               reply(pingnya)   
 			})
+			}
 			break 
 			
 case 'hidetag':{
