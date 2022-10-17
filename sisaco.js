@@ -27,7 +27,7 @@ const util = require('util')
 autobug = false
 AUTO_PP = false
 AUTO_PPP = false
-//bot bomdy 
+//bt bomdy 
 
 global.igfg = '▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98._\n' 
 global.dygp = 'https://chat.whatsapp.com/IO9jmpI72ejHiN4unRZleU'
