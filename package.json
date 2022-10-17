@@ -1,6 +1,6 @@
 {
   "name": "semar-bmd",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "semar bot multi device",
   "main": "index.js",
   "scripts": {
