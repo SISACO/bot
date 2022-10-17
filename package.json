@@ -44,7 +44,6 @@
     "cookie": "^0.4.2",
      "hxz-api": "^1.0.1",
     "mumaker": "^1.0.0", 
-    "fg-dylux": "^0.2.5",
    "google-tts-api": "^2.0.2",
     "fs": "0.0.1-security",
     "got": "^11.8.3",
