@@ -119,7 +119,7 @@ const menufollow = (hehe) => {
 			sourceUrl: `https://instagram.com/sisaco2.0`}}} 
 			)
 		}	
-global.Api = new (require('./neoxrApi'))('5VC9rvNx')
+global.Api = new (require('./neoxrApi'))('fImJpf')
 
 // pesan sementara
 		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
@@ -682,6 +682,15 @@ break
                 }
             }
             break
+case 'ig':  {
+  let json = await Api.ig(args[0])
+         if (!json.status) return reply('failed')
+         json.data.map(async v => {
+            sisaco.sendFile(m.chat, v.url, '', `🍟 *Fetching*`, m)
+            
+         })
+      }
+break
 case 'igreel': {	            
 if (!text) throw '*Enter a Link Query!*'
 const { instagramdl, instagramdlv2, instagramdlv3 } = require('@bochilteam/scraper')
@@ -859,16 +868,8 @@ case 'ttp': {
                      }
                      break
 
-case 'ig':  
-  let jsonn = await Api.ig(sisaco.igFixed(args[0]))
-         if (!jsonn.status) return reply('failed')
-         jsonn.data.map(async v => {
-            sisaco.sendFile(m.chat, v.url, '', `🍟 *Fetching*`, m)
-            
-         })
-      
-break
-case 'igs':
+
+case 'igs':{
      let json = await Api.igs(args[0])
          if (!json.status) return reply('failed')
          for (let i = 0; i < json.data.length; i++) {
@@ -876,6 +877,7 @@ case 'igs':
            
          }
          reply(`✅ Done, all stories successfully downloaded`)
+}
 break
 case 'menu' : {
 const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
