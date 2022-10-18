@@ -21,10 +21,12 @@ const maker = require('mumaker')
 const api = require("caliph-api");
 const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
+const { igs, ig} = ('./lib/neoxrApi.js')
 const util = require('util')
 autobug = false
 AUTO_PP = false
 AUTO_PPP = false
+
 //bot bomdy 
 
 global.igfg = '▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98._\n' 
@@ -117,6 +119,7 @@ const menufollow = (hehe) => {
 			sourceUrl: `https://instagram.com/sisaco2.0`}}} 
 			)
 		}	
+global.Api = new (require('./neoxrApi'))('fImJpf')
 
 // pesan sementara
 		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
@@ -865,15 +868,8 @@ case 'ig': {
   }
   }
 break
-case 'igs':{
-let res = await axios.get(`https://zenzapis.xyz/downloader/instagram/story?apikey=86f5d90096&username=${text}`)
-let anu = res.data
-for (let result of anu.url_list) {
-     
-     sisaco.sendMedia(m.chat, results, text, 'morou', m,{contextInfo: { externalAdReply: { mediaUrl: dygp, mediaType: 'VIDEO', description: 'support group', title: 'packname', body: 'grupo de soporte', thumbnailUrl: tu, sourceUrl: dygp }}}, {asDocument: true})
-    
-  } 
-}
+case 'igs':
+global.Api = new ('fImJpf')
 break
 case 'menu' : {
 const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
@@ -930,6 +926,7 @@ case 'button': {
       
      sisaco.relayMessage(m.chat, templateMessage, { quoted: m });
      }
+     break
 case 'hai': case 'take': {
             let main = botNumber
              await quoted.copyNForward(main, true)

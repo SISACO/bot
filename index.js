@@ -8,6 +8,7 @@ const path = require('path')
 const yargs = require('yargs/yargs')
 const pino = require('pino')
 const toAudio = require('./lib/converter.js')
+const axios = require('axios')
 const FileType = require('file-type')
 const connectKeWA = () => {
 const sisaco = makeWASocket({logger:pino({level:'silent'}),printQRInTerminal: true,auth: state,browser: ["sisaco Bot Multi Device", "Dekstop", "3.0"]})
@@ -47,6 +48,7 @@ global.db.data = {
 if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
   }, 30 * 1000)
+
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 
 sisaco.ev.on('messages.upsert', async sisacoo => {
@@ -66,7 +68,22 @@ const {connection,lastDisconnect} = update
 if (connection === 'close') {lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut ? connectKeWA() : ''}
 else if(connection === 'open') {sisaco.sendMessage("919995595067@s.whatsapp.net", {text:`${JSON.stringify(update, undefined, 2)}`})}
    
-
+sisaco.fetchJson = async (url, options) => {
+    try {
+        options ? options : {}
+        const res = await axios({
+            method: 'GET',
+            url: url,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+            },
+            ...options
+        })
+        return res.data
+    } catch (err) {
+        return err
+    }
+}
       /**
      * 
      * @param {*} jid 
@@ -211,6 +228,19 @@ else if(connection === 'open') {sisaco.sendMessage("919995595067@s.whatsapp.net"
         } else return jid
     }
         //---
+          //react
+                      sisaco.react = 
+                         (text) => {
+                            return sisaco.sendMessage(this.chat, {
+                                react: {
+                                    text,
+                                    key: this.vM.key
+                                }
+                            })
+                        }
+                        
+                    
+                    //
         
            sisaco.sendList = async (jid, title, text, footer, buttonText, buffer, listSections, quoted, options) => {
                 if (buffer) try { (type = await sisaco.getFile(buffer), buffer = type.data) } catch { buffer = buffer }
