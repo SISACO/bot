@@ -87,7 +87,7 @@ sisaco.fetchJson = async (url, options) => {
    /* Fix Instagram URL
     * @param {String} url
     */
-   sisaco.igFixed = (url) => {
+   sisaco.igFixed = async (url) => {
       let count = url.split('/')
       if (count.length == 7) {
          let username = count[3]
