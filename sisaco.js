@@ -859,7 +859,7 @@ case 'ttp': {
                      }
                      break
 
-case 'ig': {  
+case 'ig':  
   let json = await Api.ig(sisaco.igFixed(args[0]))
          if (!json.status) return reply('failed')
          json.data.map(async v => {
