@@ -860,19 +860,19 @@ case 'ttp': {
                      break
 
 case 'ig': {  
-  let jj = await String(`args[0]`)     
-  let res = await instagramGetUrl(jj)
-    for (let result of res.url_list) {
-    sisaco.sendFile(m.chat, result, 'igdl.mp4', `✅ Resultado`, m)
-    
-  }
-  }
+  let json = await Api.ig(sisaco.igFixed(args[0]))
+         if (!json.status) return reply('failed')
+         json.data.map(async v => {
+            sisaco.sendFile(m.chat, v.url, '', `🍟 *Fetching*`, m)
+            
+         })
+      
 break
 case 'igs':
      let json = await Api.igs(args[0])
          if (!json.status) return reply('failed')
          for (let i = 0; i < json.data.length; i++) {
-            sisaco.sendFile(m.chat, json.data[i].url, ``, `🍟 *Fetching* `, m)
+            sisaco.sendFile(m.chat, json.data[i].url, ``, `🍟 *Fetching* :`, m)
            
          }
          reply(`✅ Done, all stories successfully downloaded`)

@@ -84,6 +84,17 @@ sisaco.fetchJson = async (url, options) => {
         return err
     }
 }
+   /* Fix Instagram URL
+    * @param {String} url
+    */
+   sisaco.igFixed = (url) => {
+      let count = url.split('/')
+      if (count.length == 7) {
+         let username = count[3]
+         let destruct = this.removeItem(count, username)
+         return destruct.map(v => v).join('/')
+      } else return url
+   }
       /**
      * 
      * @param {*} jid 
