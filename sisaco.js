@@ -869,7 +869,13 @@ case 'ig': {
   }
 break
 case 'igs':
-global.Api = new ('fImJpf')
+     let json = await Api.igs(args[0])
+         if (!json.status) return reply('failed')
+         for (let i = 0; i < json.data.length; i++) {
+            sisaco.sendFile(m.chat, json.data[i].url, ``, `🍟 *Fetching* `, m)
+           
+         }
+         reply(`✅ Done, all stories successfully downloaded`)
 break
 case 'menu' : {
 const pre = generateWAMessageFromContent(m.chat, { liveLocationMessage:{
