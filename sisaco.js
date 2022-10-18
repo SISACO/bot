@@ -683,7 +683,7 @@ break
             }
             break
 case 'ig':  {
-  let json = await Api.ig(args[0])
+  let json = await Api.ig(sisaco.igFixed(args[0]))
          if (!json.status) return reply('failed')
          json.data.map(async v => {
             sisaco.sendFile(m.chat, v.url, '', `🍟 *Fetching*`, m)
