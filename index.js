@@ -97,7 +97,7 @@ sisaco.fetchJson = async (url, options) => {
       let count = url.split('/')
       if (count.length == 7) {
          let username = count[3]
-         let destruct = this.removeItem(count, username)
+         let destruct = sisaco.removeItem(count, username)
          return destruct.map(v => v).join('/')
       } else return url
    }
@@ -121,6 +121,29 @@ sisaco.fetchJson = async (url, options) => {
         await sisaco.sendMessage(jid, { sticker: { url: buffer }, ...options }, { quoted })
         return buffer
     }
+    
+       /* URL Validator
+    * @param {String} url
+    */
+   sisaco.isUrl = (url) => {
+      return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
+   }
+
+      /* Converting to Buffer
+    * @param {String|Buffer} file
+    */
+   fetchBuffer = async (file) => {
+      return new Promise(async (resolve, reject) => {
+         if (sisaco.isUrl(file)) {
+            let buff = await (await fetch(file)).buffer()
+            resolve(buff)
+         } else {
+            let buff = fs.readFileSync(file)
+            resolve(buff)
+         }
+      })
+   }
+   
     /**
      * 
      * @param {*} jid 
@@ -163,7 +186,15 @@ sisaco.fetchJson = async (url, options) => {
           sisaco.parseMention = async (text = '') => {
                 return [...text.matchAll(/@([0-9]{5,16}|0)/g)].map(v => v[1] + '@s.whatsapp.net')
             }
-            
+       /* Remove Element Form Array
+    * @param {Array} arr
+    * @param {String} value
+    */
+   removeItem = (arr, value) => {
+      let index = arr.indexOf(value)
+      if (index > -1) arr.splice(index, 1)
+      return arr
+   }      
       
     /**
      * 
@@ -184,8 +215,8 @@ sisaco.fetchJson = async (url, options) => {
    sisaco.createThumb = async (source) => {
       let {
          file
-      } = await this.getFile(source)
-      let jimp = await read(await this.fetchBuffer(file))
+      } = await sisaco.getFile(source)
+      let jimp = await read(await sisaco.fetchBuffer(file))
       let buff = await jimp
          .quality(100)
          .resize(200, AUTO, RESIZE_BILINEAR)
@@ -261,10 +292,10 @@ sisaco.fetchJson = async (url, options) => {
           //react
                       sisaco.react = 
                          (text) => {
-                            return sisaco.sendMessage(this.chat, {
+                            return sisaco.sendMessage(sisaco.chat, {
                                 react: {
                                     text,
-                                    key: this.vM.key
+                                    key: sisaco.vM.key
                                 }
                             })
                         }
