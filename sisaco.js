@@ -683,15 +683,15 @@ break
             }
             break
 case 'ig':  {
-let url;
+/*let url;
         if (mek.message.extendedTextMessage) {  
  mek.message.extendedTextMessage.contextInfo.quotedMessage.conversation
  }
  else {
             if (!args[0]) return reply('❌ Give Url')
             url = args[0]
-            }
-let json = await  Api.ig(sisaco.igFixed(url)) 
+            }*/
+let json = await  Api.ig(sisaco.igFixed(args.join(" "))) 
 //  let json = await Api.ig(`${text}`)
     
          if (!json.status) return reply('failed')
