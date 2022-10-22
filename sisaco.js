@@ -119,7 +119,7 @@ const menufollow = (hehe) => {
 			sourceUrl: `https://instagram.com/sisaco2.0`}}} 
 			)
 		}	
-global.Api = new (require('./neoxrApi'))('fImJpf')
+global.Api = new (require('./neoxrApi'))('5VC9rvNx')
 
 // pesan sementara
 		global.ephemeral = null // 86400 = 24jam, kalo ingin di hilangkan ganti '86400' jadi 'null' atau ''
