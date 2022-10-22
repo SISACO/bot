@@ -9,6 +9,12 @@ const yargs = require('yargs/yargs')
 const pino = require('pino')
 const toAudio = require('./lib/converter.js')
 const axios = require('axios')
+const {
+   read,
+   MIME_JPEG,
+   RESIZE_BILINEAR,
+   AUTO
+} = require('jimp')
 const FileType = require('file-type')
 const connectKeWA = () => {
 const sisaco = makeWASocket({logger:pino({level:'silent'}),printQRInTerminal: true,auth: state,browser: ["sisaco Bot Multi Device", "Dekstop", "3.0"]})
@@ -172,7 +178,20 @@ sisaco.fetchJson = async (url, options) => {
 	let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
         return await sisaco.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
     }
-
+/* Image Resizer for Thumbnail
+    * @param {String|Buffer} source
+    */
+   sisaco.createThumb = async (source) => {
+      let {
+         file
+      } = await this.getFile(source)
+      let jimp = await read(await this.fetchBuffer(file))
+      let buff = await jimp
+         .quality(100)
+         .resize(200, AUTO, RESIZE_BILINEAR)
+         .getBufferAsync(MIME_JPEG)
+      return buff
+   }
     /**
      * 
      * @param {*} jid 
