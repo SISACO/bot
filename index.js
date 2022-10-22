@@ -132,7 +132,7 @@ sisaco.fetchJson = async (url, options) => {
       /* Converting to Buffer
     * @param {String|Buffer} file
     */
-   fetchBuffer = async (file) => {
+   sisaco.fetchBuffer = async (file) => {
       return new Promise(async (resolve, reject) => {
          if (sisaco.isUrl(file)) {
             let buff = await (await fetch(file)).buffer()
