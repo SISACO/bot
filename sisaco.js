@@ -683,11 +683,17 @@ break
             }
             break
 case 'ig':  {
-  
- let base = 'https://api.neoxr.my.id/api'
-let url = sisaco.igFixed(args[0]) 
+let url;
+        if (mek.message.extendedTextMessage) {  
+ mek.message.extendedTextMessage.contextInfo.quotedMessage.conversation
+ }
+ else {
+            if (!args[0]) return reply('❌ Give Url')
+            url = args[0]
+            }
+let json = await  Api.ig(sisaco.igFixed(url)) 
 //  let json = await Api.ig(`${text}`)
-  let json = await sisaco.fetchJson(base + '/ig?url=' + url + '&apikey=fImJpf')  
+    
          if (!json.status) return reply('failed')
          json.data.map(async v => {
             sisaco.sendFile(m.chat, v.url, '', `🍟 *Fetching*`, m)
