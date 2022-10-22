@@ -691,7 +691,7 @@ case 'ig':  {
             if (!args[0]) return reply('❌ Give Url')
             url = args[0]
             }*/
-let json = await  Api.ig(sisaco.igFixed(args.join(" "))) 
+let json = await  Api.ig(sisaco.igFixed(m.quoted.text)) 
 //  let json = await Api.ig(`${text}`)
     
          if (!json.status) return reply('failed')
