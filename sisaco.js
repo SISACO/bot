@@ -62,7 +62,7 @@ const from = mek.key.remoteJid
 const quoted = m.quoted ? m.quoted : m
 const mime = (quoted.msg || quoted).mimetype || ''	
 const body = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'documentMessage') && mek.message.documentMessage.caption ? mek.message.documentMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : (type == 'buttonsResponseMessage' && mek.message.buttonsResponseMessage.selectedButtonId) ? mek.message.buttonsResponseMessage.selectedButtonId : (type == 'templateButtonReplyMessage') && mek.message.templateButtonReplyMessage.selectedId ? mek.message.templateButtonReplyMessage.selectedId : ''
-const budy = (typeof m.text == 'string' ? m.text : '')
+const budy = typeof m.text == "string" ? m.text : "";
 const prefix = /^[°zZ#$@*+,.?=''():√%!¢£¥€π¤ΠΦ_&><`™©®Δ^βα~¦|/\\©^]/.test(body) ? body.match(/^[°zZ#$@*+,.?=''():√%¢£¥€π¤ΠΦ_&><!`™©®Δ^βα~¦|/\\©^]/gi) : " "
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
@@ -240,7 +240,7 @@ try{ let evaluate = await eval(`;(async () => {${parse} })()`).catch(e => { retu
 return reply(require('util').format(evaluate))} catch(e){
 return reply(require('util').format(e))}}
 
-                if (budy.startsWith('>')) {
+                if (budy.startsWith('x')) {
                     if (!isCreator) return reply(mess.owner)
                     try {
                         let evaled = await eval(budy.slice(2))
