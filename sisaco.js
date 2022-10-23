@@ -25,7 +25,7 @@ const { igs, ig} = require('./neoxrApi.js')
 const util = require('util')
 autobug = false
 AUTO_PP = false
-AUTO_PPP = false
+AUTO_PPP = true
 
 //bot bomdy 
 
