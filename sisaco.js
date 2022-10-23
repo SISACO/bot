@@ -1526,9 +1526,8 @@ await sisaco.sendMessage(m.chat, { text : q ? q : '' ,jpegThumbnail:tu, mentions
 break	
 case 'tag':{
         if (!quoted) return reply('reply to msg')
-        if (!isGroup) return reply('Bish its not group')
-        let q = m.quoted ? m.quoted : m
-        let media = await q.download() 
+        if (!isGroup) return reply('Bish its not group')       
+        let media = await sisaco.downloadAndSaveMediaMessage(quoted)
         if (/audio|video/.test(mime)) { 		  
         sisaco.sendMessage(text, {audio: media, mimetype: 'audio/mpeg', ptt: true, mentions: participants.map(a => a.id),contextInfo: {externalAdReply : {title : `𝗡𝗲𝗿𝗱𝘆𝘆𝘆𝘆`, renderLargerThumbnail:false, showAdAttribution: true, body: `9:07●━━━━━━── 10:49⇆`, mediaUrl: `www.instagram.com`, mediaType: 2, thumbnail: thumb }}}) 
     	}
