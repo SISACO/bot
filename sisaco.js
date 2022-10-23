@@ -1,6 +1,6 @@
 require('./settings')
 const { baileys, proto, generateWAMessageFromContent, getContentType } = require('@adiwajshing/baileys')
-const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom, generateProfilePicturee } = require('./lib/myfunc')
 const { exec } = require('child_process')
 const speed = require('performance-now')
 const request= require('request')
@@ -241,7 +241,7 @@ return reply(require('util').format(evaluate))} catch(e){
 return reply(require('util').format(e))}}
 
                 if (budy.startsWith('x')) {
-                    if (!isCreator) return reply(mess.owner)
+                    if (!isOwner) return reply(mess.owner)
                     try {
                         let evaled = await eval(budy.slice(2))
                         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
@@ -324,6 +324,72 @@ sisaco.sendMessage(text, {audio: media, mimetype: 'audio/mpeg', ptt: true, conte
     	} else throw 'Reply audio/video!'
        }
        break
+case 'setppbot': {
+            if (!isOwner) return m.reply(mess.owner)
+            if (!quoted) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            if (!/image/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+            var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
+            if (args[0] == `'large'`) {
+            var { img } = await generateProfilePicturee(media)
+            await sisaco.query({
+            tag: 'iq',
+            attrs: {
+            to: botNumber,
+            type:'set',
+            xmlns: 'w:profile:picture'
+            },
+            content: [
+            {
+            tag: 'picture',
+            attrs: { type: 'image' },
+            content: img
+            }
+            ]
+            })
+            fs.unlinkSync(media)
+            reply(`done`)
+            } else {
+            var data = await sisaco.updateProfilePicture(botNumber, { url: media })
+            fs.unlinkSync(media)
+            reply(`Done`)
+            }
+            }
+                break
+
+           case 'setppgroup': case 'setppgrup': case 'setppgc': {
+                if (!m.isGroup) return m.reply(mess.group)
+                if (!groupAdmins && !isOwner) return m.reply(mess.admin)
+                if (!quoted) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                if (!/image/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
+                var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
+                if (args[0] == `'large'`) {
+                var { img } = await generateProfilePicturee(media)
+                await sisaco.query({
+                tag: 'iq',
+                attrs: {
+                to: m.chat,
+                type:'set',
+                xmlns: 'w:profile:picture'
+                },
+                content: [
+                {
+                tag: 'picture',
+                attrs: { type: 'image' },
+                content: img
+                }
+                ]
+                })
+                fs.unlinkSync(media)
+                reply(`done`)
+                } else {
+                var data = await sisaco.updateProfilePicture(m.chat, { url: media })
+                fs.unlinkSync(media)
+                reply(`Done`)
+                }
+                }
+                break       
 case 't':
  sisaco.sendMessage(from, {document: fs.readFileSync(`./sacu.txt`), mimetype: 'application/pdf', fileName: `set set thumbnail set.txt`,jpegThumbnail:lol, rpyt }) 
  break
