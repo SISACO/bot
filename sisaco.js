@@ -1,6 +1,6 @@
 require('./settings')
 const { baileys, proto, generateWAMessageFromContent, getContentType } = require('@adiwajshing/baileys')
-const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom, generateProfilePicturee } = require('./lib/myfunc')
+const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom, generateProfilePicture } = require('./lib/myfunc')
 const { exec } = require('child_process')
 const speed = require('performance-now')
 const request= require('request')
@@ -331,7 +331,7 @@ case 'setppbot': {
             if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
             var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
             if (args[0] == `'large'`) {
-            var { img } = await generateProfilePicturee(media)
+            var { img } = await generateProfilePicture(media)
             await sisaco.query({
             tag: 'iq',
             attrs: {
@@ -365,7 +365,7 @@ case 'setppbot': {
                 if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
                 var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
                 if (args[0] == `'large'`) {
-                var { img } = await generateProfilePicturee(media)
+                var { img } = await generateProfilePicture(media)
                 await sisaco.query({
                 tag: 'iq',
                 attrs: {
