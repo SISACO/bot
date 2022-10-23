@@ -1,6 +1,6 @@
 require('./settings')
 const { baileys, proto, generateWAMessageFromContent, getContentType } = require('@adiwajshing/baileys')
-const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom, generateProfilePicture } = require('./lib/myfunc')
+const { smsg, getGroupAdmins, getBuffer, formatp, fetchJson, getSizeMedia, tanggal, isUrl, formatDate, getTime,  sleep, clockString, jsonformat, format, parseMention, getRandom, generateProfilePicturee } = require('./lib/myfunc')
 const { exec } = require('child_process')
 const speed = require('performance-now')
 const request= require('request')
@@ -25,7 +25,7 @@ const { igs, ig} = require('./neoxrApi.js')
 const util = require('util')
 autobug = false
 AUTO_PP = false
-AUTO_PPP = true
+AUTO_PPP = false
 
 //bot bomdy 
 
@@ -331,7 +331,7 @@ case 'setppbot': {
             if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
             var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
             if (args[0] == `'large'`) {
-            var { img } = await generateProfilePicture(media)
+            var { img } = await generateProfilePicturee(media)
             await sisaco.query({
             tag: 'iq',
             attrs: {
@@ -365,7 +365,7 @@ case 'setppbot': {
                 if (/webp/.test(mime)) return m.reply(`Kirim/Reply Image Dengan Caption ${prefix + command}`)
                 var media = await sisaco.downloadAndSaveMediaMessage(quoted, 'ppbot.jpeg')
                 if (args[0] == `'large'`) {
-                var { img } = await generateProfilePicture(media)
+                var { img } = await generateProfilePicturee(media)
                 await sisaco.query({
                 tag: 'iq',
                 attrs: {
@@ -1524,23 +1524,32 @@ if (!isGroup) return reply('Bish its not group')
 await sisaco.sendMessage(m.chat, { text : q ? q : '' ,jpegThumbnail:tu, mentions: participants.map(a => a.id)})	
 }		  
 break	
-case 'hidetag2':{
-let users = participants.map(a => a.id)
-let q = m.quoted ? m.quoted : m
-let c = m.quoted ? m.quoted : m.msg
-const msg = sisaco.cMod(m.chat,
-generateWAMessageFromContent(m.chat, {
-[c.toJSON ? q.mtype : 'extendedTextMessage']: c.toJSON ? c.toJSON() : {
-text: c || ''
+case 'tag':{
+        if (!quoted) return reply('reply to msg')
+        if (!isGroup) return reply('Bish its not group')
+        let q = m.quoted ? m.quoted : m
+        let media = await q.download() 
+        if (/audio|video/.test(mime)) { 		  
+        sisaco.sendMessage(text, {audio: media, mimetype: 'audio/mpeg', ptt: true, mentions: participants.map(a => a.id),contextInfo: {externalAdReply : {title : `𝗡𝗲𝗿𝗱𝘆𝘆𝘆𝘆`, renderLargerThumbnail:false, showAdAttribution: true, body: `9:07●━━━━━━── 10:49⇆`, mediaUrl: `www.instagram.com`, mediaType: 2, thumbnail: thumb }}}) 
+    	}
+    	else if(/webp/.test(mime)) {
+    	 sisaco.sendMessage(m.chat, { sticker: media, mentions: participants.map(a => a.id) })
+    	}
+    	else if(/image/.test(mime)){
+    	sisaco.sendMessage(m.chat, { image: media, mentions: participants.map(a => a.id) })
+
+    	}
+    	else if(/video/.test(mime)){
+    	sisaco.sendMessage(m.chat, { video: media, mentions: participants.map(a => a.id) })
+
+    	}
+    	else if(/document/.test(mime)){
+    	sisaco.sendMessage(m.chat, { document: media, mentions: participants.map(a => a.id) })
+    	}
+    	else 
+    	reply('Not a Valid Message')
 }
-}, {
-quoted: m,
-userJid: sisaco.user.id
-}),
-text || q.text, sisaco.user.jid,  {mentionedJid: participants.map(a => a.id)} 
-)
-await sisaco.relayMessage(m.chat, msg.message, { messageId: msg.key.id, mentions: users  })
-}
+
 break		  
 //©from: dennis
 case 'restart':
