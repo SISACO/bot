@@ -14,7 +14,7 @@
 },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dcode-denpa/Semar-BMD.git"
+    "url": "git+ssh://github.com/dcode-denpa/Semar-BMD.git"
   },
   "keywords": [],
   "author": "",
