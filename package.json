@@ -1,7 +1,7 @@
 
 {
   "name": "semar-bmd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "semar bot multi device",
   "main": "index.js",
   "scripts": {
@@ -14,15 +14,15 @@
 },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/dcode-denpa/Semar-BMD.git"
+    "url": "git+https://github.com/dcode-denpa/Semar-BMD.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "git+https://github.com/dcode-denpa/Semar-BMD/issues"
+    "url": "https://github.com/dcode-denpa/Semar-BMD/issues"
   },
-  "homepage": "git+https://github.com/dcode-denpa/Semar-BMD#readme",
+  "homepage": "https://github.com/dcode-denpa/Semar-BMD#readme",
   "dependencies": {
     "@adiwajshing/baileys": "4.1.0",
         "@adiwajshing/keyed-db": "^0.2.4",
