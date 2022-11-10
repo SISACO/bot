@@ -10,7 +10,7 @@
     "dev": "pm2 start index.js"
   },
 "engines": {
-    "node": "16.x"
+    "node": "15.x"
 },
   "repository": {
     "type": "git",
@@ -20,9 +20,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dcode-denpa/Semar-BMD/issues"
+    "url": "git+https://github.com/dcode-denpa/Semar-BMD/issues"
   },
-  "homepage": "https://github.com/dcode-denpa/Semar-BMD#readme",
+  "homepage": "git+https://github.com/dcode-denpa/Semar-BMD#readme",
   "dependencies": {
     "@adiwajshing/baileys": "4.1.0",
         "@adiwajshing/keyed-db": "^0.2.4",
