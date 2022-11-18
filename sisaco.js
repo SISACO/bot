@@ -881,9 +881,9 @@ case 'ig2' :{
         quoted: m.data
     })*/
     var getid = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|s|reel|tv)\/)([\w-]+)(?:\/)?(\?.*)?$/
-    var url = getid.exec(q)
-    if (url != null) {
-        try { var res = await downloadGram(url[0]) } catch { return await m.reply("_Something went wrong, Please try again!_") }
+    var urll = getid.exec(q)
+    if (urll != null) {
+        try { var res = await downloadGram(urll[0]) } catch { return await m.reply("_Something went wrong, Please try again!_") }
         if (res == false) return await m.reply("*Download failed*");
         var quoted = mek.reply_message ? mek.quoted : mek.data
         for (var i in res) {
