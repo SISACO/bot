@@ -10,6 +10,7 @@ const path = require('path')
 const { youtubeSearch } = require('@bochilteam/scraper')
 const cheerio = require ("cheerio")
 const hx = require("hxz-api")
+const ytdl = require('ytdl-secktor')
 const { tlang } = require('./lib/scraper')
 const yts = require("yt-search");
 const axios = require('axios')
@@ -789,27 +790,63 @@ if (args[0].startsWith(`+${nomorDeveloper}`)) return reply('Tidak bisa call ke n
 if (args[0].startsWith(`+${botNumber}`)) return reply('Tidak bisa call ke nomor ini!')
 axios.post('https://magneto.api.halodoc.com/api/v1/users/authentication/otp/requests',{'phone_number':`${dn}`,'channel': 'voice'},{headers: {'authority': 'magneto.api.halodoc.com','accept-language': 'id,en;q=0.9,en-GB;q=0.8,en-US;q=0.7','cookie': '_gcl_au=1.1.1860823839.1661903409; _ga=GA1.2.508329863.1661903409; afUserId=52293775-f4c9-4ce2-9002-5137c5a1ed24-p; XSRF-TOKEN=12D59ACD8AA0B88A7ACE05BB574FAF8955D23DBA28E8EE54F30BCB106413A89C1752BA30DC063940ED30A599C055CC810636; _gid=GA1.2.798137486.1664887110; ab.storage.deviceId.1cc23a4b-a089-4f67-acbf-d4683ecd0ae7=%7B%22g%22%3A%2218bb4559-2170-9c14-ddcd-2dc80d13c3e3%22%2C%22c%22%3A1656491802961%2C%22l%22%3A1664887110254%7D; amp_394863=nZm2vDUbDAvSia6NQPaGum...1gehg2efd.1gehg3c19.f.0.f; ab.storage.sessionId.1cc23a4b-a089-4f67-acbf-d4683ecd0ae7=%7B%22g%22%3A%22f1b09ad8-a7d9-16f3-eb99-a97ba52677d2%22%2C%22e%22%3A1664888940400%2C%22c%22%3A1664887110252%2C%22l%22%3A1664887140400%7D','origin': 'https://www.halodoc.com','sec-ch-ua': '"Microsoft Edge";v="105", "Not)A;Brand";v="8", "Chromium";v="105"','sec-ch-ua-mobile': '?0','sec-ch-ua-platform': '"Windows"','sec-fetch-dest': 'empty','sec-fetch-mode': 'cors','sec-fetch-site': 'same-site','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.53','x-xsrf-token': '12D59ACD8AA0B88A7ACE05BB574FAF8955D23DBA28E8EE54F30BCB106413A89C1752BA30DC063940ED30A599C055CC810636'}}).then(function (response) {reply(`${JSON.stringify(response.data, null, 2)}`)}).catch(function (error) {reply(`${JSON.stringify(error, null, 2)}`)})
 break
-/*case 'ytmp4' : {
-   let limit = 310
-   if (!args || !args[0]) return reply(`✳️ Ejemplo :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`)
-  if (!args[0].match(/youtu/gi)) return reply(`❎ Verifica que el link de YouTube`)
- let chat = global.db.data.chats[m.chat]  	
-	let { title, size, result, quality } = await fg.downloader.youtube.ytmp4(args[0])	
-    if(Number(size.split(' MB')[0]) >= limit) {
-axios.get('https://tinyurl.com/api-create.php?url=`${result}`').then((G) => {
-  return m.reply(` ≡  *NERDY VIDEO 2*\n▢ *📌Title* : ${title}\n▢ *⚖️Size* : ${size}\n▢ _File size is over the limit Take the link instead _ *+${limit} MB\n▢ discharge  Aquí ${G.data}` )})
-    } else {  
-     sisaco.sendFile(m.chat, result, title + '.mp4', `
- ≡  *NERDY MUSIC 2*
-  
-▢ *📌Title* : ${title}
-▢ *📟 Extension* : mp4
-▢ *🎞️ Quality* : ${quality}
-▢ *⚖️Size* : ${size}
-`.trim(), m, false, rpl,{ asDocument: true })
+case 'ytmp4' : {
+          if (!text) {
+                m.reply(`❌Please provide me a url`);
+                return;
+            }
+            try {
+                let urlYt = text;
+                if (!urlYt.startsWith("http")) return m.reply(`❌ Give youtube link!`);
+                let infoYt = await ytdl.getInfo(urlYt);
+                if (infoYt.videoDetails.lengthSeconds >= videotime) return m.reply(`❌ Video file too big!`);
+                let titleYt = infoYt.videoDetails.title;
+                let randomName = getRandom(".mp4");
+
+                const stream = ytdl(urlYt, {
+                        filter: (info) => info.itag == 22 || info.itag == 18,
+                    })
+                    .pipe(fs.createWriteStream(`./${randomName}`));
+                await new Promise((resolve, reject) => {
+                    stream.on("error", reject);
+                    stream.on("finish", resolve);
+                });
+                let stats = fs.statSync(`./${randomName}`);
+                let fileSizeInBytes = stats.size;
+                let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
+                if (fileSizeInMegabytes <= dlsize) {
+                    let yts = require("secktor-pack");
+                    let search = await yts(text);
+                    let buttonMessage = {
+                        video: fs.readFileSync(`./${randomName}`),
+                        jpegThumbnail: thumb,
+                        mimetype: 'video/mp4',
+                        fileName: `${titleYt}.mp4`,
+                        caption: ` ⿻ Title : ${titleYt}\n ⿻ File Size : ${fileSizeInMegabytes} MB`,
+                        headerType: 4,
+                        contextInfo: {
+                            externalAdReply: {
+                                title: 'hehe',
+                                body: m.pushname,
+                                thumbnail: await getBuffer(search.all[0].thumbnail),
+                                renderLargerThumbnail: true,
+                                mediaType: 2,
+                                mediaUrl: search.all[0].thumbnail,
+                                sourceUrl: search.all[0].thumbnail
+                            }
+                        }
+                    }
+                    return sisaco.sendMessage(m.chat, buttonMessage, { quoted: m })
+                } else {
+                    m.reply(`❌ File size bigger than 40mb.`);
+                }
+
+                fs.unlinkSync(`./${randomName}`);
+            } catch (e) {
+                console.log(e)
+            }
  }
- }
-break*/
+break
 case 'true3':{
 var numbr = args[0]
 
