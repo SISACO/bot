@@ -884,10 +884,9 @@ case 'ig2' :{
     var urll = getid.exec(q)
     if (urll != null) {
         try { var res = await downloadGram(urll[0]) } catch { return await m.reply("_Something went wrong, Please try again!_") }
-        if (res == false) return await m.reply("*Download failed*");
-        var quoted = mek.reply_message ? mek.quoted : mek.data
+        if (res == false) return await m.reply("*Download failed*");        
         for (var i in res) {
-        await sisaco.sendMessage(m.chat,{[res[i].includes("mp4")?'video':'image']:{url:res[i]}},{quoted})
+        await sisaco.sendMessage(m.chat,{[res[i].includes("mp4")?'video':'image']:{url:res[i]}},{mek})
         };
     }
 
