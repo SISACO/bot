@@ -24,6 +24,8 @@ const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const { igs, ig} = require('./neoxrApi.js')
 const util = require('util')
+const {getPost, getStalk, getStory, skbuffer} = require('raganork-bot');
+const {downloadGram, pin, story} = require('./misc');
 autobug = false
 AUTO_PP = false
 AUTO_PPP = false
@@ -438,7 +440,7 @@ if (!text) return m.reply(`Example : ${prefix + command} Back in black`)
             ]
             const listMessage = {
                 text: teskd,
-                footer: tlang().footer,
+                footer: "nerdy",
                 title: ``,
                 buttonText: "Songs",
                 mentions: await sisaco.parseMention(teskd),
@@ -869,8 +871,30 @@ reply(`*Failed to download media and send videos*`)
 })
 }
 break
+case 'ig2' :{
+/*if (q && (q.startsWith('l') || q.includes('youtu'))) return;
+    if (!q) return await m.reply("*Need instagram link*")
+    if (q.includes("stories")) return await m.reply("*_Use .story command!_*")
+    if (q && !q.includes('instagram.com')) return await sisaco.sendMessage(m.chat, {
+        text: need
+    }, {
+        quoted: m.data
+    })*/
+    var getid = /(?:https?:\/\/)?(?:www\.)?(?:instagram\.com(?:\/.+?)?\/(p|s|reel|tv)\/)([\w-]+)(?:\/)?(\?.*)?$/
+    var url = getid.exec(q)
+    if (url != null) {
+        try { var res = await downloadGram(url[0]) } catch { return await m.reply("_Something went wrong, Please try again!_") }
+        if (res == false) return await m.reply("*Download failed*");
+        var quoted = mek.reply_message ? mek.quoted : mek.data
+        for (var i in res) {
+        await sisaco.sendMessage(m.chat,{[res[i].includes("mp4")?'video':'image']:{url:res[i]}},{quoted})
+        };
+    }
+
+}
+break
 case 'call':
-if (!isOwner && !msg.key.fromMe) return reply('Fitur Ini Hanya Dapat Digunakan Oleh Developer!')
+if (!isOwner && !mek.key.fromMe) return reply('Fitur Ini Hanya Dapat Digunakan Oleh Developer!')
 if (!dn) return reply(`Silahkan masukkan nomor!\nContoh: ${prefix}call +${senderNumber}`)
 if (args[0].startsWith('0')) return reply(`Awali nomor dengan +62!\nContoh: ${prefix}call +${senderNumber}`)
 if (args[0].startsWith('8')) return reply(`Awali nomor dengan +62!\nContoh: ${prefix}call +${senderNumber}`)
@@ -1547,10 +1571,10 @@ break
 case 'adlt': 
 if (!isGroup) return reply('Bruhhh isnt a group')
 const key = {
-    remoteJid: m.msg.contextInfo.remoteJid,
+    remoteJid: m.mek.contextInfo.remoteJid,
     fromMe: false,
-    id: m.msg.contextInfo.stanzaId,
-    participant: sisaco.decodeJid(m.msg.contextInfo.participant)
+    id: m.mek.contextInfo.stanzaId,
+    participant: sisaco.decodeJid(m.mek.contextInfo.participant)
 }
 await sisaco.sendMessage(m.chat, { delete: key })
 

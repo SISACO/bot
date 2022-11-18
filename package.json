@@ -40,6 +40,7 @@
     "child_process": "^1.0.2",
     "truecallerjs": "^1.1.1",
     "crypto": "^1.0.1",
+    "raganork-bot": "3.0.0",
     "fg-ig": "^0.0.2",
     "instagram-url-direct": "^1.0.12",
     "file-type": "^16.5.3",
