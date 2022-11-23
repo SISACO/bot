@@ -311,6 +311,41 @@ switch (command) {
 case 'cek': case 'test': case 'status':
 exec(`pm2 status`, (error, stdout, stderr) => { reply(stdout)})
 break
+case 'lot': {
+texttlot = args.join(' ')
+lot1 = texttlot.split('|')[0]
+lot2x = texttlot.split('|')[1]
+lot2xi = lot2x.replace(/1 :|2 :|3 :|4 :|5 :/gi,'')
+lot2x1 = lot2xi.replace('.','')
+lot2 = lot2x1.replace(/			|\n/gi,',')
+lotr0 = lot2.split(',')[0]
+lott0 = lot1.includes(lotr0)
+
+lotr1 = lot2.split(',')[1]
+lott1 = lot1.includes(lotr1)
+if (lott1 == true){var lotw1 = "👑"} else { var lotw1 = "losser..."}
+lotr2 = lot2.split(',')[2]
+lott2 = lot1.includes(lotr2)
+if (lott2 == true){var lotw2 = "👑"} else { var lotw2 = "losser..."}
+lotr3 = lot2.split(',')[3]
+lott3 = lot1.includes(lotr3)
+if (lott3 == true){var lotw3 = "👑"} else { var lotw3 = "losser..."}
+lotv1 = lot1
+lotc1 = ((lotv1.match(new RegExp(lotr1, "g")) || []).length);
+lotv2 = lot1
+lotc2 = ((lotv2.match(new RegExp(lotr2, "g")) || []).length);
+lotv3 = lot1
+lotc3 = ((lotv3.match(new RegExp(lotr3, "g")) || []).length);
+lotba = lotr0.charAt(0)
+lotbb = lotr0.charAt(1)
+lotbc = lotr0.charAt(2)
+repxi = `${lotc1} ${lotw2}\n${lotr3}`
+repxi1 = repxi
+lotout = repxi1.replace(/0 lost.../gi,' lost...')
+
+reply(lotout)
+}
+break
 case 'jid' : {
     let jid 
             if (m.quoted) jid  = m.mentionedJid[0] ? m.mentionedJid[1] : m.quoted.sender
