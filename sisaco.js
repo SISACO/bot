@@ -13,8 +13,7 @@ const hx = require("hxz-api")
 const ytdl = require('ytdl-secktor')
 const { tlang } = require('./lib/scraper')
 const yts = require("yt-search");
-const axios = require('axios')
-const instagramGetUrl = require("fg-ig")    
+const axios = require('axios')    
 const FileType = require('file-type')
 const truecallerjs = require('truecallerjs');
 const textpro = require('./lib/textpro')
@@ -1292,7 +1291,7 @@ sisaco.sendText(m.chat, '     「 Online List 」\n\n' + online.map(v => `${list
 }
 break
 
-      case "igstory":
+     /* case "igstory":
         if (q === "help") {
           await sisaco.reply(`*❗Command:*  Insta Story\n*🍀Aliases* -igstory\n*🧩Category:* Downloader\n*🛠️Usage:* ${
             prefix + command
@@ -1306,7 +1305,7 @@ break
               sisaco.sendFile(m.chat, result, 'instagram.mp4', `『 - - - - - ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ - - - - - 』*`, rpl,m)
             }
           });
-        break;
+        break;*/
 case 'run':{
 if (!args.join(" ")) return reply(`Example : run python3`)
 if (!m.quoted) return reply('Reply to text')
