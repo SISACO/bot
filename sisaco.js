@@ -19,7 +19,6 @@ const FileType = require('file-type')
 const truecallerjs = require('truecallerjs');
 const textpro = require('./lib/textpro')
 const maker = require('mumaker')
-const api = require("caliph-api");
 const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const { igs, ig} = require('./neoxrApi.js')
