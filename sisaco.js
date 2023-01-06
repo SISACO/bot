@@ -23,7 +23,6 @@ const fetch = require('node-fetch')
 const ytv = require('./lib/y2mate.js')
 const { igs, ig} = require('./neoxrApi.js')
 const util = require('util')
-const {getPost, getStalk, getStory, skbuffer} = require('raganork-bot');
 autobug = false
 AUTO_PP = false
 AUTO_PPP = false
