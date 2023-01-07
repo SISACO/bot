@@ -430,7 +430,7 @@ case 'order' :{
 id = args.join(' ')
 if (!text) return m.reply("Give the order id")
 if (typeof text !== 'number'){ 
-axios.post('https://cidgrowthmedia.com/api/v2',{'api_token':'2855ae92eb9b3e2707d6295db3cb0515687d87f2','action':'status','order':${id}'}).then(function (response) {reply(`${JSON.stringify(response.data.status, null, 2)}`)}).catch(function (error) {reply(`${JSON.stringify(error, null, 2)}`)})
+axios.post('https://cidgrowthmedia.com/api/v2',{'api_token':'2855ae92eb9b3e2707d6295db3cb0515687d87f2','action':'status','order':`${id}`}).then(function (response) {reply(`${JSON.stringify(response.data.status, null, 2)}`)}).catch(function (error) {reply(`${JSON.stringify(error, null, 2)}`)})
 } else
 return m.reply("Error code or wrong order id\n eg: *.order 47567*")
 }
